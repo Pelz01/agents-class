@@ -48,6 +48,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.5s;
+      overflow-y: auto;
     }
 
     .slide.active {
@@ -77,10 +78,10 @@
 
     .slide h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2rem, 5vw, 4rem);
       font-weight: 700;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       line-height: 1.1;
     }
 
@@ -90,20 +91,20 @@
 
     .slide h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .slide p {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 800px;
+      max-width: 700px;
       text-align: center;
     }
 
     .content {
-      max-width: 1000px;
+      max-width: 900px;
       width: 100%;
     }
 
@@ -113,9 +114,9 @@
     }
 
     li {
-      padding: 1rem 0;
+      padding: 0.75rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--text-muted);
     }
 
@@ -124,28 +125,28 @@
     li::before {
       content: '→';
       color: var(--accent);
-      margin-right: 1rem;
+      margin-right: 0.75rem;
     }
 
     .comparison {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
       width: 100%;
-      max-width: 1000px;
+      max-width: 850px;
     }
 
     .col {
       background: var(--surface);
       border-radius: 12px;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .col h3 {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .col.was { border: 1px solid rgba(255,100,100,0.3); }
@@ -155,36 +156,67 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
       width: 100%;
     }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: 10px;
+      padding: 1.25rem;
     }
 
     .card h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
     }
 
     .card .tag {
       display: inline-block;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 100px;
       background: var(--accent-dim);
       color: var(--accent);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .card p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-align: left;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .level-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .level-card .level-num {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .level-card h5 {
+      font-size: 0.85rem;
+      margin: 0.4rem 0;
+    }
+
+    .level-card p {
+      font-size: 0.7rem;
     }
 
     .nav {
@@ -223,6 +255,7 @@
 
     @media (max-width: 768px) {
       .comparison { grid-template-columns: 1fr; }
+      .level-grid { grid-template-columns: repeat(2, 1fr); }
       .slide { padding: 2rem; }
     }
   </style>
@@ -231,21 +264,21 @@
   <div class="progress" id="progress"></div>
   
   <div class="deck">
-    <!-- Slide 1 -->
+    <!-- Slide 1: Intro -->
     <div class="slide active" data-slide="1">
       <div class="slide-number">00 / INTRO</div>
       <h1>AI Agents<br><span>Explained</span></h1>
-      <p>A practical guide to understanding AI agents, how they work, and why they're changing everything.</p>
+      <p>A complete guide to understanding AI agents — what they are, how they work, and why they matter.</p>
     </div>
 
-    <!-- Slide 2 -->
+    <!-- Slide 2: What -->
     <div class="slide" data-slide="2">
-      <div class="slide-number">01 / WHAT</div>
+      <div class="slide-number">01 / WHAT IS IT?</div>
       <h1>What is an<br><span>AI Agent?</span></h1>
-      <p>An AI agent is something that does things, not just talks. You set a goal, it figures out the steps.</p>
+      <p>An AI agent is something that does things, not just talks. You set a goal, it figures out the steps and executes.</p>
     </div>
 
-    <!-- Slide 3 -->
+    <!-- Slide 3: Chatbot vs Agent -->
     <div class="slide" data-slide="3">
       <div class="slide-number">01 / WHAT</div>
       <h2>Chatbot vs Agent</h2>
@@ -257,21 +290,23 @@
             <li>Reactive — waits for input</li>
             <li>One turn at a time</li>
             <li>Just generates text</li>
+            <li>No memory</li>
           </ul>
         </div>
         <div class="col now">
           <h3>✅ Agent</h3>
           <ul>
-            <li>You give goal → It executes</li>
+            <li>Goal → Executes</li>
             <li>Proactive — takes action</li>
             <li>Multi-step workflows</li>
             <li>Uses tools, makes changes</li>
+            <li>Remembers context</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Slide 4 -->
+    <!-- Slide 4: Analogy -->
     <div class="slide" data-slide="4">
       <div class="slide-number">02 / ANALOGY</div>
       <h1>Think of it<br><span>this way</span></h1>
@@ -279,142 +314,254 @@
         <div class="comparison">
           <div class="col">
             <h3>🗺️ Map</h3>
-            <p>Shows possibilities. You walk the path yourself.</p>
+            <p>Shows possibilities. You walk the path.</p>
           </div>
           <div class="col">
             <h3>🎯 Tour Guide</h3>
-            <p>Knows destination. Handles route, gets you there.</p>
+            <p>Knows destination. Handles route.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 5 -->
+    <!-- Slide 5: Key Word -->
     <div class="slide" data-slide="5">
       <div class="slide-number">02 / ANALOGY</div>
       <h2>The key word: <span>Autonomy</span></h2>
-      <p>You give a destination, not directions. It decides, tries, checks, and adjusts.</p>
+      <p>You give a destination, not directions. It decides, tries, checks, and adjusts if needed.</p>
     </div>
 
-    <!-- Slide 6 -->
+    <!-- Slide 6: How It Works -->
     <div class="slide" data-slide="6">
-      <div class="slide-number">03 / HOW</div>
-      <h2>What agents actually do</h2>
+      <div class="slide-number">03 / HOW IT WORKS</div>
+      <h2>What agents do</h2>
       <ul>
-        <li><strong>Break down goals</strong> → "Book flight" becomes search → compare → select → pay</li>
+        <li><strong>Break down goals</strong> → "Book flight" = search → compare → pay</li>
         <li><strong>Use tools</strong> → search, browse, send emails, run code</li>
-        <li><strong>Check results</strong> → verify the action worked</li>
-        <li><strong>Retry on failure</strong> → try a different way</li>
+        <li><strong>Check results</strong> → verify action worked</li>
+        <li><strong>Retry on failure</strong> → try different way</li>
         <li><strong>Report back</strong> → give you the outcome</li>
       </ul>
     </div>
 
-    <!-- Slide 7 -->
+    <!-- Slide 7: Types -->
     <div class="slide" data-slide="7">
-      <div class="slide-number">04 / EXAMPLES</div>
+      <div class="slide-number">04 / TYPES</div>
+      <h2>Types of agents</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Task-Specific</span>
+          <h4>Single-Task</h4>
+          <p>One job. Email summarizer, calendar scheduler.</p>
+        </div>
+        <div class="card">
+          <span class="tag">General</span>
+          <h4>General-Purpose</h4>
+          <p>Handle anything. Claude Code, Codex.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Research</span>
+          <h4>Research</h4>
+          <p>Deep-dive analysis. Digital research assistant.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Automation</span>
+          <h4>Automation</h4>
+          <p>Repetitive workflows. Zapier, Make.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Messaging</span>
+          <h4>Messaging</h4>
+          <p>Live in chat apps. OpenClaw, Hermes.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Coding</span>
+          <h4>Coding</h4>
+          <p>Build & debug. Devin, Claude Code.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Autonomy Levels -->
+    <div class="slide" data-slide="8">
+      <div class="slide-number">05 / LEVELS</div>
+      <h2>Autonomy levels</h2>
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="level-num">LVL 0</div>
+          <h5>None</h5>
+          <p>Basic chatbot</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LVL 1</div>
+          <h5>Tool Use</h5>
+          <p>Uses tools when asked</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LVL 2</div>
+          <h5>Goal-Oriented</h5>
+          <p>Plans steps itself</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LVL 3</div>
+          <h5>Partial</h5>
+          <p>Minimal oversight</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LVL 4</div>
+          <h5>Full</h5>
+          <p>Sets own goals</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: Real Examples -->
+    <div class="slide" data-slide="9">
+      <div class="slide-number">06 / EXAMPLES</div>
       <h2>Real agents today</h2>
       <div class="cards">
         <div class="card">
           <span class="tag">Coding</span>
           <h4>Claude Code</h4>
-          <p>Anthropic's CLI that reads codebases, runs commands, edits files.</p>
+          <p>Anthropic CLI. Reads codebases, runs commands.</p>
         </div>
         <div class="card">
           <span class="tag">Coding</span>
-          <h4>OpenAI Codex</h4>
-          <p>CLI that turns natural language into code execution.</p>
+          <h4>Codex</h4>
+          <p>OpenAI CLI. Text → code execution.</p>
         </div>
         <div class="card">
           <span class="tag">Coding</span>
           <h4>Devin</h4>
-          <p>Autonomous engineer. Hired by Goldman Sachs as Employee #1.</p>
+          <p>Autonomous engineer. Goldman Sachs Employee #1.</p>
         </div>
         <div class="card">
           <span class="tag">Messaging</span>
           <h4>OpenClaw</h4>
-          <p>Self-hosted gateway connecting WhatsApp/Telegram/Discord to AI.</p>
+          <p>WhatsApp/Telegram/Discord → AI. Self-hosted.</p>
         </div>
         <div class="card">
           <span class="tag">Messaging</span>
           <h4>Hermes</h4>
-          <p>Open-source with MCP, cron jobs, multi-provider support.</p>
+          <p>Open-source. MCP, cron jobs.</p>
         </div>
         <div class="card">
           <span class="tag">General</span>
           <h4>Operator</h4>
-          <p>OpenAI's browser agent that navigates sites and fills forms.</p>
+          <p>OpenAI browser agent.</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 8 -->
-    <div class="slide" data-slide="8">
-      <div class="slide-number">05 / CAPABILITIES</div>
-      <h2>Real things agents do now</h2>
+    <!-- Slide 10: Tools -->
+    <div class="slide" data-slide="10">
+      <div class="slide-number">07 / TOOLS</div>
+      <h2>How agents are built</h2>
+      <div class="cards">
+        <div class="card"><h4>LangGraph</h4><p>Python. Complex workflows.</p></div>
+        <div class="card"><h4>CrewAI</h4><p>Python. Role-based.</p></div>
+        <div class="card"><h4>Mastra</h4><p>TypeScript.</p></div>
+        <div class="card"><h4>AutoGen</h4><p>Python.</p></div>
+        <div class="card"><h4>AgentKit</h4><p>Multi-lang.</p></div>
+        <div class="card"><h4>OpenAI SDK</h4><p>Python.</p></div>
+      </div>
+    </div>
+
+    <!-- Slide 11: MCP -->
+    <div class="slide" data-slide="11">
+      <div class="slide-number">07 / TOOLS</div>
+      <h2>MCP: The USB-C of AI</h2>
+      <p>Model Context Protocol — Standard way to connect agents to tools.</p>
       <ul>
-        <li><strong>Research</strong> → Search dozens of sources, summarize</li>
-        <li><strong>Book</strong> → Flights, hotels, appointments</li>
-        <li><strong>Track</strong> → Spending, metrics, tasks</li>
-        <li><strong>Create</strong> → Blog posts, code, emails</li>
-        <li><strong>Debug</strong> → Find and fix bugs automatically</li>
+        <li>Built by Anthropic, now open standard</li>
+        <li>Connects agents to: GitHub, Filesystem, Search...</li>
+        <li>Like USB-C but for AI</li>
       </ul>
     </div>
 
-    <!-- Slide 9 -->
-    <div class="slide" data-slide="9">
-      <div class="slide-number">06 / WHY</div>
+    <!-- Slide 12: Capabilities -->
+    <div class="slide" data-slide="12">
+      <div class="slide-number">08 / CAPABILITIES</div>
+      <h2>What agents do now</h2>
+      <ul>
+        <li><strong>Research</strong> → Search sources, summarize</li>
+        <li><strong>Book</strong> → Flights, hotels, appointments</li>
+        <li><strong>Track</strong> → Spending, metrics, tasks</li>
+        <li><strong>Create</strong> → Posts, code, emails</li>
+        <li><strong>Debug</strong> → Find & fix bugs</li>
+      </ul>
+    </div>
+
+    <!-- Slide 13: Why -->
+    <div class="slide" data-slide="13">
+      <div class="slide-number">09 / WHY IT MATTERS</div>
       <h2>Why this matters</h2>
-      <div class="content">
-        <div class="cards">
-          <div class="card">
-            <h4>⏱️ Time</h4>
-            <p>30min clicks → 30sec instruction. Patient, doesn't tire.</p>
-          </div>
-          <div class="card">
-            <h4>🌙 24/7</h4>
-            <p>Works while you sleep. Wake up to done tasks.</p>
-          </div>
-          <div class="card">
-            <h4>🔄 Role Shift</h4>
-            <p>From using AI to deploying AI.</p>
-          </div>
+      <div class="cards">
+        <div class="card">
+          <h4>⏱️ Time</h4>
+          <p>30min clicks → 30sec. Patient, doesn't tire.</p>
+        </div>
+        <div class="card">
+          <h4>🌙 24/7</h4>
+          <p>Works while you sleep.</p>
+        </div>
+        <div class="card">
+          <h4>🔄 Shift</h4>
+          <p>From using AI to deploying AI.</p>
+        </div>
+        <div class="card">
+          <h4>📈 Scale</h4>
+          <p>100 agents = 100x output.</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 10 -->
-    <div class="slide" data-slide="10">
-      <div class="slide-number">07 / YOUR ROLE</div>
+    <!-- Slide 14: Your Role -->
+    <div class="slide" data-slide="14">
+      <div class="slide-number">10 / YOUR ROLE</div>
       <h2>You're the boss</h2>
       <ul>
-        <li><strong>Clear instructions</strong> → "book under $500" beats "book something"</li>
+        <li><strong>Clear instructions</strong> → "book under $500" > "book something"</li>
         <li><strong>Review outputs</strong> → Trust but verify</li>
         <li><strong>Iterate</strong> → Like managing a new hire</li>
       </ul>
     </div>
 
-    <!-- Slide 11 -->
-    <div class="slide" data-slide="11">
-      <div class="slide-number">08 / FUTURE</div>
+    <!-- Slide 15: Limitations -->
+    <div class="slide" data-slide="15">
+      <div class="slide-number">11 / LIMITATIONS</div>
+      <h2>Where agents struggle</h2>
+      <ul>
+        <li><strong>Hallucinations</strong> → Can make things up. Always verify.</li>
+        <li><strong>Infinite loops</strong> → Get stuck repeating. Set boundaries.</li>
+        <li><strong>Context limits</strong> → Forget in long conversations.</li>
+        <li><strong>Tool dependencies</strong> → Break when tools fail.</li>
+      </ul>
+    </div>
+
+    <!-- Slide 16: Future -->
+    <div class="slide" data-slide="16">
+      <div class="slide-number">12 / FUTURE</div>
       <h2>What's coming</h2>
       <ul>
         <li><strong>Agent-to-Agent</strong> → Calendar talks to Travel</li>
         <li><strong>Persistent</strong> → Remembers you forever</li>
         <li><strong>Economy</strong> → Buy/sell agents as products</li>
-        <li><strong>Workers</strong> → AI is a worker, not a tool</li>
+        <li><strong>Specialized</strong> → Medical, legal, finance agents</li>
+        <li><strong>Swarms</strong> → Multiple agents on one problem</li>
       </ul>
     </div>
 
-    <!-- Slide 12 -->
-    <div class="slide" data-slide="12">
-      <div class="slide-number">09 / ACTION</div>
+    <!-- Slide 17: CTA -->
+    <div class="slide" data-slide="17">
+      <div class="slide-number">NOW</div>
       <h1>Ready to<br><span>try?</span></h1>
       <p>Pick one repetitive task. Tell an agent. See what happens.</p>
     </div>
   </div>
 
   <div class="slide-indicator">
-    <span id="current">1</span> / <span id="total">12</span>
+    <span id="current">1</span> / <span id="total">17</span>
   </div>
 
   <div class="nav">
@@ -437,17 +584,11 @@
     }
 
     document.getElementById('next').addEventListener('click', () => {
-      if (current < total - 1) {
-        current++;
-        showSlide(current);
-      }
+      if (current < total - 1) { current++; showSlide(current); }
     });
 
     document.getElementById('prev').addEventListener('click', () => {
-      if (current > 0) {
-        current--;
-        showSlide(current);
-      }
+      if (current > 0) { current--; showSlide(current); }
     });
 
     document.addEventListener('keydown', (e) => {

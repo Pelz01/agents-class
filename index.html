@@ -180,6 +180,13 @@
       line-height: 1.2;
     }
 
+    .slide h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+    }
+
     .slide-content {
       display: grid;
       gap: 2rem;
@@ -333,6 +340,80 @@
       font-size: 0.9rem;
     }
 
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .level-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .level-card .level-num {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .level-card h4 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+
+    .level-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .framework-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .framework-item h5 {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .framework-item span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .warning-box {
+      background: rgba(255,100,100,0.1);
+      border: 1px solid rgba(255,100,100,0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .warning-box h4 {
+      color: #ff6464;
+      margin-bottom: 1rem;
+    }
+
+    .warning-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
     footer {
       padding: 4rem 2rem;
       text-align: center;
@@ -351,9 +432,11 @@
     <div class="nav-logo">agents<span>.class</span></div>
     <div class="nav-links">
       <a href="#what">What</a>
-      <a href="#how">How</a>
+      <a href="#types">Types</a>
+      <a href="#levels">Levels</a>
       <a href="#examples">Examples</a>
-      <a href="#why">Why It Matters</a>
+      <a href="#tools">Tools</a>
+      <a href="#why">Why</a>
       <a href="#future">Future</a>
     </div>
   </nav>
@@ -362,7 +445,7 @@
     <!-- Slide 0: Hero -->
     <section class="hero">
       <h1>AI Agents<br><span>Explained</span></h1>
-      <p>A practical guide to understanding AI agents, how they work, and why they're changing everything. No technical background needed.</p>
+      <p>A complete guide to understanding AI agents — what they are, how they work, and why they matter. No technical background needed.</p>
       <div class="hero-cta">
         <a href="#what" class="btn btn-primary">Start Learning</a>
         <a href="slides.html" class="btn btn-secondary">View as Slides</a>
@@ -372,26 +455,28 @@
     <!-- Slide 1: What is an Agent -->
     <section id="what" class="slide">
       <div class="slide-number">01 / WHAT IS AN AI AGENT?</div>
-      <h2>What's the difference between a chatbot and an agent?</h2>
+      <h2>Chatbot vs Agent — What's the difference?</h2>
       <div class="comparison">
         <div class="comparison-item was">
-          <h4>Chatbot / LLM</h4>
+          <h4>❌ Regular Chatbot / LLM</h4>
           <ul>
             <li>You ask → It answers</li>
             <li>Reactive — waits for input</li>
             <li>One conversation turn at a time</li>
             <li>Just generates text</li>
-            <li>Starts fresh each time</li>
+            <li>Starts fresh each conversation</li>
+            <li>No memory of past calls</li>
           </ul>
         </div>
         <div class="comparison-item now">
-          <h4>AI Agent</h4>
+          <h4>✅ AI Agent</h4>
           <ul>
-            <li>You give a goal → It executes</li>
+            <li>You give goal → It executes</li>
             <li>Proactive — takes action</li>
             <li>Multi-step workflows</li>
             <li>Uses tools, makes changes</li>
             <li>Remembers context</li>
+            <li>Can learn from feedback</li>
           </ul>
         </div>
       </div>
@@ -399,12 +484,12 @@
 
     <!-- Slide 2: Simple Analogy -->
     <section class="slide">
-      <div class="slide-number">02 / THINK OF IT THIS WAY</div>
-      <h2>What's the difference?</h2>
+      <div class="slide-number">02 / THE ANALOGY</div>
+      <h2>Think of it this way</h2>
       <div class="slide-content split">
         <div class="card">
           <h3>🗺️ A Map</h3>
-          <p>Shows you all the possibilities. You still have to walk the path yourself. Good for exploration, but you have to do the work.</p>
+          <p>Shows you all the possibilities. You still have to walk the path yourself. Good for exploration, but you have to do all the work.</p>
         </div>
         <div class="card">
           <h3>🎯 A Tour Guide</h3>
@@ -417,22 +502,94 @@
       </div>
     </section>
 
-    <!-- Slide 3: How It Works -->
-    <section id="how" class="slide">
+    <!-- Slide 3: Agent Anatomy -->
+    <section class="slide">
       <div class="slide-number">03 / HOW IT WORKS</div>
       <h2>What agents actually do</h2>
       <ul>
         <li><strong>Break down goals</strong> — "Book me a flight" becomes: search → compare → select → pay → confirm</li>
-        <li><strong>Use tools</strong> — search, browse, send emails, run code, access APIs</li>
-        <li><strong>Check results</strong> — verify the action worked, not just assumed</li>
+        <li><strong>Use tools</strong> — search, browse websites, send emails, run code, access APIs</li>
+        <li><strong>Check results</strong> — verify the action worked, not just assumed it did</li>
         <li><strong>Retry on failure</strong> — if something breaks, try a different way</li>
         <li><strong>Report back</strong> — give you the outcome, not just text</li>
+        <li><strong>Remember context</strong> — don't make you repeat yourself</li>
       </ul>
     </section>
 
-    <!-- Slide 4: Real Examples -->
+    <!-- Slide 4: Types of Agents -->
+    <section id="types" class="slide">
+      <div class="slide-number">04 / TYPES OF AGENTS</div>
+      <h2>Not all agents are the same</h2>
+      <div class="agent-list">
+        <div class="agent-card">
+          <span class="tag">Task-Specific</span>
+          <h4>Single-Task Agents</h4>
+          <p>Built for one job. Email summarizer, calendar scheduler, code reviewer. Do one thing very well.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">General</span>
+          <h4>General-Purpose Agents</h4>
+          <p>Handle anything you throw at them. Claude Code, Codex. versatile and adaptable.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">Research</span>
+          <h4>Research Agents</h4>
+          <p>Deep-dive analysis. Search multiple sources, compile reports, analyze data. Like a digital research assistant.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">Automation</span>
+          <h4>Automation Agents</h4>
+          <p>Handle repetitive workflows. Zapier, Make. Watch for triggers and execute sequences.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">Communication</span>
+          <h4>Messaging Agents</h4>
+          <p>Live in chat apps. OpenClaw, Hermes. Talk to users via WhatsApp, Telegram, Discord.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">Coding</span>
+          <h4>Coding Agents</h4>
+          <p>Build and debug software. Devin, Claude Code. Full development lifecycle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Autonomy Levels -->
+    <section id="levels" class="slide">
+      <div class="slide-number">05 / AUTONOMY LEVELS</div>
+      <h2>How much freedom does it have?</h2>
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="level-num">LEVEL 0</div>
+          <h4>No Autonomy</h4>
+          <p>Basic chatbot. You ask, it answers. No tools, no actions.</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LEVEL 1</div>
+          <h4>Tool Use</h4>
+          <p>Can use tools when asked. Uses search, calculator, but only when you tell it to.</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LEVEL 2</div>
+          <h4>Goal-Oriented</h4>
+          <p>Plans steps to reach a goal. Chooses tools itself, but checks with you first.</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LEVEL 3</div>
+          <h4>Partially Autonomous</h4>
+          <p>Plans, executes, and adapts with minimal oversight. Can handle surprises.</p>
+        </div>
+        <div class="level-card">
+          <div class="level-num">LEVEL 4</div>
+          <h4>Fully Autonomous</h4>
+          <p>Sets goals, learns from outcomes, operates with little human input. The future.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Real Examples -->
     <section id="examples" class="slide">
-      <div class="slide-number">04 / REAL AGENTS TODAY</div>
+      <div class="slide-number">06 / REAL AGENTS TODAY</div>
       <h2>Agents that actually exist</h2>
       <div class="agent-list">
         <div class="agent-card">
@@ -465,15 +622,80 @@
           <h4>Operator (OpenAI)</h4>
           <p>Browser-based agent that uses a dedicated browser to navigate sites, fill forms, and complete web tasks on your behalf.</p>
         </div>
+        <div class="agent-card">
+          <span class="tag">Research</span>
+          <h4>Perplexity AI</h4>
+          <p>AI-powered search engine that researches, cites sources, and compiles comprehensive answers. Not fully autonomous but research-capable.</p>
+        </div>
+        <div class="agent-card">
+          <span class="tag">Automation</span>
+          <h4>Zapier</h4>
+          <p>Connects apps and automates workflows. Watches for triggers (new email, form submit) and executes actions automatically.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Slide 5: What Agents Can Do -->
+    <!-- Slide 7: Tools & Frameworks -->
+    <section id="tools" class="slide">
+      <div class="slide-number">07 / TOOLS & FRAMEWORKS</div>
+      <h2>How agents are built</h2>
+      <p>These are the tools developers use to create agents:</p>
+      <div class="framework-grid">
+        <div class="framework-item">
+          <h5>LangGraph</h5>
+          <span>Python</span>
+        </div>
+        <div class="framework-item">
+          <h5>CrewAI</h5>
+          <span>Python</span>
+        </div>
+        <div class="framework-item">
+          <h5>Mastra</h5>
+          <span>TypeScript</span>
+        </div>
+        <div class="framework-item">
+          <h5>AutoGen</h5>
+          <span>Python</span>
+        </div>
+        <div class="framework-item">
+          <h5>AgentKit</h5>
+          <span>Multi-lang</span>
+        </div>
+        <div class="framework-item">
+          <h5>OpenAI Agents SDK</h5>
+          <span>Python</span>
+        </div>
+      </div>
+      <div class="slide-content split" style="margin-top: 2rem;">
+        <div class="card">
+          <h3>What frameworks provide</h3>
+          <ul>
+            <li>Tool calling infrastructure</li>
+            <li>Memory management</li>
+            <li>Multi-agent coordination</li>
+            <li>Planning/reasoning loops</li>
+            <li>Error handling & retry</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>MCP (Model Context Protocol)</h3>
+          <ul>
+            <li>Standard way to connect agents to tools</li>
+            <li>Like USB-C for AI</li>
+            <li>GitHub, Filesystem, Search...</li>
+            <li>Built by Anthropic</li>
+            <li>Now open standard</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: What Agents Can Do -->
     <section class="slide">
-      <div class="slide-number">05 / WHAT THEY CAN DO</div>
+      <div class="slide-number">08 / CAPABILITIES</div>
       <h2>Real things agents do right now</h2>
       <div class="real-world">
-        <h3>Research & Summarize</h3>
+        <h3>Research & Information</h3>
         <div class="example">
           <h4>"Find everything on AI agents and summarize"</h4>
           <p>→ Agent searches dozens of sources, extracts key points, compiles a briefing</p>
@@ -482,10 +704,20 @@
           <h4>"What's the best flight next week under $500?"</h4>
           <p>→ Searches multiple airlines, compares prices, books the winner</p>
         </div>
+      </div>
+      <div class="real-world">
+        <h3>Automation & Tracking</h3>
         <div class="example">
           <h4>"Track my spending across all accounts"</h4>
           <p>→ Logs into banking APIs, categorizes transactions, flags anomalies</p>
         </div>
+        <div class="example">
+          <h4>"Remind me of every meeting tomorrow"</h4>
+          <p>→ Checks calendar, sends reminders at right times</p>
+        </div>
+      </div>
+      <div class="real-world">
+        <h3>Creation & Editing</h3>
         <div class="example">
           <h4>"Turn this brain dump into a polished blog post"</h4>
           <p>→ Edits, formats, adds structure, suggests a title</p>
@@ -497,9 +729,9 @@
       </div>
     </section>
 
-    <!-- Slide 6: Why It Matters -->
+    <!-- Slide 9: Why It Matters -->
     <section id="why" class="slide">
-      <div class="slide-number">06 / WHY IT MATTERS</div>
+      <div class="slide-number">09 / WHY IT MATTERS</div>
       <h2>Why this isn't just tech hype</h2>
       <div class="slide-content">
         <div class="card">
@@ -514,12 +746,16 @@
           <h3>🔄 The Role Shift</h3>
           <p>You're no longer the worker. You're the one giving instructions. The biggest mindset change: from using AI to deploying AI.</p>
         </div>
+        <div class="card">
+          <h3>📈 Scale</h3>
+          <p>A human can do one thing at a time. An agent can do hundreds. The economics change when you have 100 agents working for you.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Slide 7: Human's Role -->
+    <!-- Slide 10: Human's Role -->
     <section class="slide">
-      <div class="slide-number">07 / YOUR ROLE</div>
+      <div class="slide-number">10 / YOUR ROLE</div>
       <h2>You're the boss, not the worker</h2>
       <div class="slide-content">
         <div class="card">
@@ -537,19 +773,43 @@
       </div>
     </section>
 
-    <!-- Slide 8: What's Coming -->
+    <!-- Slide 11: Limitations -->
+    <section class="slide">
+      <div class="slide-number">11 / LIMITATIONS</div>
+      <h2>Where agents struggle</h2>
+      <div class="warning-box">
+        <h4>Hallucinations</h4>
+        <p>Agents can make things up. Always verify important information.</p>
+      </div>
+      <div class="warning-box">
+        <h4>Infinite Loops</h4>
+        <p>Sometimes agents get stuck repeating the same thing. Set boundaries.</p>
+      </div>
+      <div class="warning-box">
+        <h4>Context Limits</h4>
+        <p>Agents forget things in very long conversations. Memory isn't perfect.</p>
+      </div>
+      <div class="warning-box">
+        <h4>Tool Dependencies</h4>
+        <p>If a tool breaks (website changes, API down), the agent can't complete the task.</p>
+      </div>
+    </section>
+
+    <!-- Slide 12: What's Coming -->
     <section id="future" class="slide">
-      <div class="slide-number">08 / WHAT'S COMING</div>
+      <div class="slide-number">12 / WHAT'S COMING</div>
       <h2>The future of agents</h2>
       <ul>
         <li><strong>Agent-to-Agent</strong> — Your calendar agent talks to your travel agent. No human in the middle.</li>
         <li><strong>Persistent Agents</strong> — Instead of starting fresh, agents that remember you forever.</li>
         <li><strong>Agent Economy</strong> — People build agents and sell them. Lawyer agent. Accountant agent. Personal stylist agent.</li>
+        <li><strong>Specialized Agents</strong> — Agents trained for specific industries (medical, legal, finance)</li>
+        <li><strong>Agent Swarms</strong> — Multiple agents working together on complex problems</li>
         <li><strong>The Meta-Point</strong> — We're moving from "AI is a tool" to "AI is a worker."</li>
       </ul>
     </section>
 
-    <!-- Slide 9: CTA -->
+    <!-- Slide 13: CTA -->
     <section class="slide">
       <div class="slide-number">NOW</div>
       <h2>Ready to try?</h2>
