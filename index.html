@@ -173,7 +173,7 @@
       <nav class="side-links">
         <a href="#overview">Course overview<span>start here</span></a>
         <a href="slides.html">Slides<span>presentation view</span></a>
-        <a href="#quiz">Quiz<span>50 questions</span></a>
+        <a href="quiz.html">Quiz<span>50 questions</span></a>
         <a href="#m1">Module 1: AI Foundations<span>8 lessons</span></a><a href="#m2">Module 2: Understanding LLMs<span>8 lessons</span></a><a href="#m3">Module 3: From Chatbots to Agents<span>8 lessons</span></a><a href="#m4">Module 4: Agent Building Blocks<span>8 lessons</span></a><a href="#m5">Module 5: Memory, Knowledge, and RAG<span>8 lessons</span></a><a href="#m6">Module 6: Tools, APIs, and MCP<span>8 lessons</span></a><a href="#m7">Module 7: Automation and Workflows<span>8 lessons</span></a><a href="#m8">Module 8: Multi-Agent Systems<span>8 lessons</span></a><a href="#m9">Module 9: Reliability and Evaluation<span>8 lessons</span></a><a href="#m10">Module 10: Safety, Security, and Ethics<span>8 lessons</span></a><a href="#m11">Module 11: Product and User Experience<span>8 lessons</span></a><a href="#m12">Module 12: Business and Real-World Use Cases<span>8 lessons</span></a><a href="#m13">Module 13: Builder Path: How to Create Your Own Agent<span>8 lessons</span></a><a href="#m14">Module 14: Careers, Strategy, and the Future<span>8 lessons</span></a>
         <a href="#glossary">Glossary<span>simple definitions</span></a>
         <a href="#capstones">Capstone ideas<span>build with what you learn</span></a>
@@ -196,7 +196,7 @@
           <div class="toolbar-links">
             <a class="toolbar-pill" href="#overview">Overview</a>
             <a class="toolbar-pill" href="slides.html">Slides</a>
-            <a class="toolbar-pill" href="#quiz">Quiz</a>
+            <a class="toolbar-pill" href="quiz.html">Quiz</a>
           </div>
           <div class="toolbar-actions">
             <button class="toolbar-button" id="prev-module" type="button">← Prev module</button>
@@ -3685,30 +3685,15 @@
         </div>
       </section>
 
-
-      <section class="overview" id="quiz">
+      <section class="overview" id="assessment">
         <div class="overview-inner">
           <div class="panel">
-            <h2>Interactive end-of-course quiz</h2>
-            <p>Choose your answers, move through all 50 questions, and submit at the end to get your total score. The quiz starts simple, moves to medium, and ends hard based on what the course taught.</p>
-            <div class="quiz-controls">
-              <div class="quiz-filter" id="quiz-filter">
-                <button type="button" class="quiz-filter-button active" data-filter="All">All questions</button>
-                <button type="button" class="quiz-filter-button" data-filter="Simple">Simple</button>
-                <button type="button" class="quiz-filter-button" data-filter="Medium">Medium</button>
-                <button type="button" class="quiz-filter-button" data-filter="Hard">Hard</button>
-              </div>
-              <div class="quiz-progress" id="quiz-progress">Answered 0 of 50</div>
+            <h2>Take the quiz on its own page</h2>
+            <p>The course now stays focused on learning, while the full 50-question quiz lives on a separate page with selectable answers, scoring, and a better flow.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="quiz.html">Open quiz page</a>
+              <a class="btn" href="slides.html">View slides</a>
             </div>
-          </div>
-          <div class="score-summary" id="score-summary">
-            <h3>Your score will appear here</h3>
-            <p>Select your answers, then press <strong>Submit quiz</strong> to get your total score, percentage, and difficulty breakdown.</p>
-          </div>
-          <div class="quiz-grid" id="quiz-list"></div>
-          <div class="quiz-footer-actions">
-            <button type="button" class="quiz-submit" id="submit-quiz">Submit quiz</button>
-            <button type="button" class="quiz-reset" id="reset-quiz">Reset answers</button>
           </div>
         </div>
       </section>
@@ -3778,7 +3763,7 @@
       actions.innerHTML = `
         ${index > 0 ? `<a href="#${moduleSections[index - 1].id}">← Previous module</a>` : `<a href="#overview">← Back to overview</a>`}
         <a href="slides.html">View slides</a>
-        <a href="#quiz">Go to quiz</a>
+        <a href="quiz.html">Take quiz</a>
         ${index < moduleSections.length - 1 ? `<a href="#${moduleSections[index + 1].id}">Next module →</a>` : `<a href="#top">Back to top ↑</a>`}
       `;
       section.querySelector('.module-header').appendChild(actions);
@@ -3795,218 +3780,6 @@
 
     moduleSections.forEach(section => observer.observe(section));
     updateToolbar();
-
-    const quizData = [
-      {
-        level: 'Simple',
-        intro: 'Start here if you want to test the core ideas in the easiest form.',
-        questions: [
-          ['What is the biggest difference between a chatbot and an agent?', ['A. Agents only work offline', 'B. Agents can take actions toward a goal', 'C. Agents do not use language models', 'D. Chatbots are always better'], 'B', 'An agent can do more than reply. It can plan, act, and continue toward a goal.'],
-          ['What does LLM stand for?', ['A. Large Language Model', 'B. Linked Learning Machine', 'C. Long Logic Method', 'D. Layered Language Map'], 'A', 'LLM means Large Language Model.'],
-          ['What is a prompt?', ['A. A training dataset', 'B. A database server', 'C. The instructions and context given to the model', 'D. A type of hardware'], 'C', 'A prompt is what guides the model for the task at hand.'],
-          ['Why do tools matter for agents?', ['A. They make the screen brighter', 'B. They let the agent do real work outside plain text', 'C. They remove the need for data', 'D. They stop all errors'], 'B', 'Tools connect the model to useful actions like search, files, browsers, or APIs.'],
-          ['What is automation?', ['A. Work moving with less manual effort', 'B. Any code project', 'C. A social network', 'D. A type of memory'], 'A', 'Automation means reducing repeated manual work through a defined process.'],
-          ['What is context window in simple terms?', ['A. The size of the monitor', 'B. The amount of information the model can consider at once', 'C. A note-taking app', 'D. A programming language'], 'B', 'The context window is the information space available during one task.'],
-          ['What is a workflow?', ['A. A random series of clicks', 'B. A repeatable sequence of steps', 'C. A kind of chatbot', 'D. A secret API'], 'B', 'A workflow is a process with ordered steps from start to finish.'],
-          ['Why is verification important for agents?', ['A. Because every first answer is perfect', 'B. Because agents should check whether actions worked', 'C. Because tools never fail', 'D. Because users dislike results'], 'B', 'Verification helps the agent avoid false success.'],
-          ['What does RAG help with?', ['A. Making colors better', 'B. Giving the model fresh relevant information', 'C. Removing all prompts', 'D. Training robots physically'], 'B', 'RAG helps by retrieving useful information before generating an answer.'],
-          ['What is an API in plain English?', ['A. A structured way for software to talk to software', 'B. A type of image file', 'C. A password manager', 'D. A keyboard shortcut'], 'A', 'APIs are standard ways for programs to request data or actions.'],
-          ['Why do users trust an agent more when it shows progress?', ['A. Because it feels more transparent', 'B. Because it uses fewer tokens', 'C. Because it makes the code shorter', 'D. Because it removes all waiting'], 'A', 'Visible progress helps users understand that the system is actually working.'],
-          ['What is a guardrail?', ['A. A decorative UI element', 'B. A rule or check that reduces bad behavior', 'C. A type of vector database', 'D. A training chip'], 'B', 'Guardrails help keep outputs safer and more reliable.'],
-          ['What is short-term memory for an agent?', ['A. Information used during the current task', 'B. Lifetime storage for everything forever', 'C. A backup drive', 'D. A browser extension'], 'A', 'Short-term memory supports the current workflow or conversation.'],
-          ['Why might a team use no-code automation tools?', ['A. To avoid all thinking', 'B. To automate common workflows quickly', 'C. To delete databases', 'D. To replace the internet'], 'B', 'No-code tools help teams build practical automations faster.'],
-          ['What is prompt injection?', ['A. A stronger GPU', 'B. Outside content trying to manipulate the agent instructions', 'C. A type of slide animation', 'D. A safe retrieval step'], 'B', 'Prompt injection is a safety issue where hostile content tries to redirect the agent.'],
-          ['What is a simple sign that an agent project is useful?', ['A. It solves a real repeated problem', 'B. It has the most buttons', 'C. It uses the biggest model only', 'D. It has no users'], 'A', 'Real value usually starts with a real pain point.'],
-          ['What is the role of a human-in-the-loop?', ['A. To stop all software use', 'B. To review important decisions at key moments', 'C. To train hardware manually', 'D. To make every answer longer'], 'B', 'Human review is useful when risk or uncertainty is high.'],
-          ['What is an embedding used for?', ['A. Improving font size', 'B. Representing meaning for search and similarity', 'C. Sending payments', 'D. Cleaning browser cache'], 'B', 'Embeddings help systems find related content by meaning.'],
-          ['Why should an agent know when to stop?', ['A. To avoid wasted steps and unsafe behavior', 'B. To reduce internet speed', 'C. To remove logs', 'D. To skip outputs'], 'A', 'Stopping conditions prevent unnecessary or risky loops.'],
-          ['What is the main goal of this course style?', ['A. Sounding complex', 'B. Keeping explanations broad but easy to learn', 'C. Only serving experts', 'D. Avoiding structure'], 'B', 'The course is meant to stay detailed and simple at the same time.']
-        ]
-      },
-      {
-        level: 'Medium',
-        intro: 'These questions mix concepts together and ask you to apply what was taught.',
-        questions: [
-          ['A support agent reads the latest policy doc before answering a customer. What concept is that?', ['A. Prompt injection', 'B. RAG', 'C. Overfitting', 'D. Fine-tuning'], 'B', 'The agent retrieved fresh information before generating the reply.'],
-          ['Why can agentic automation be more powerful than classic automation?', ['A. It can adapt when steps are less predictable', 'B. It always uses no code', 'C. It removes all need for humans', 'D. It never needs tools'], 'A', 'Agentic systems can reason through uncertain paths instead of only following fixed rules.'],
-          ['Which choice best describes the basic agent loop?', ['A. Train, deploy, forget', 'B. Understand, plan, act, observe, adjust', 'C. Click, close, restart', 'D. Store, encrypt, delete'], 'B', 'That loop captures how many practical agents operate.'],
-          ['Why is adding too many tools a bad idea for a first build?', ['A. It makes the monitor smaller', 'B. It increases complexity and failure points', 'C. It automatically raises revenue', 'D. It deletes memory'], 'B', 'Every extra tool increases the surface area for mistakes and confusion.'],
-          ['What is the best first step when building your own agent?', ['A. Buy the biggest server', 'B. Start with one real repeated problem', 'C. Add ten workflows at once', 'D. Build a large multi-agent team immediately'], 'B', 'The strongest first builds solve one real problem clearly.'],
-          ['Why are logs important in agent systems?', ['A. They help you see what the agent tried and why', 'B. They guarantee correctness by themselves', 'C. They replace testing', 'D. They stop latency'], 'A', 'Logs support debugging, evaluation, and trust.'],
-          ['Which option is the clearest example of a risky action needing approval?', ['A. Summarizing a note', 'B. Sending money or deleting data', 'C. Formatting a paragraph', 'D. Renaming a file draft'], 'B', 'High-impact actions should often pause for human approval.'],
-          ['What problem does a vector database mainly solve?', ['A. Better slide transitions', 'B. Storing and searching embeddings efficiently', 'C. Making prompts shorter', 'D. Training hardware'], 'B', 'Vector databases are useful for semantic retrieval over embeddings.'],
-          ['Why might one agent review another agent’s work?', ['A. To create duplication for fun', 'B. To improve quality before delivery', 'C. To slow the system down', 'D. To avoid all prompts'], 'B', 'A review agent can help catch mistakes or policy issues.'],
-          ['What trade-off often appears when choosing a model?', ['A. Speed, cost, context, and quality', 'B. Only color and font', 'C. Only operating system', 'D. Only storage size'], 'A', 'Model choice is often a balance among multiple factors.'],
-          ['Which statement best explains hallucination?', ['A. The model produces grounded facts only', 'B. The model gives confident but ungrounded output', 'C. The tool returns a 200 status', 'D. The user writes a long prompt'], 'B', 'Hallucination is confident language without reliable grounding.'],
-          ['Why do good tool interfaces matter?', ['A. Cleaner tool design makes agent behavior easier to predict and use', 'B. They stop the need for prompts', 'C. They prevent all bugs forever', 'D. They remove the need for testing'], 'A', 'Simple tool interfaces make orchestration and debugging much easier.'],
-          ['What is a strong reason to use a multi-agent system?', ['A. The task clearly benefits from specialized roles', 'B. You want complexity for its own sake', 'C. One agent already handles it simply', 'D. You dislike clear workflows'], 'A', 'Multiple agents are most useful when specialization creates real value.'],
-          ['Why should onboarding be simple in an AI product?', ['A. So beginners reach a first win quickly', 'B. To hide the product forever', 'C. To avoid all features', 'D. To make support harder'], 'A', 'Fast early success improves adoption and confidence.'],
-          ['What does continuous improvement mean in agent systems?', ['A. Never shipping', 'B. Iterating through tests, feedback, and measurement', 'C. Using more colors', 'D. Replacing every tool weekly'], 'B', 'Reliable systems improve through measured feedback loops.'],
-          ['Which case best fits a research agent?', ['A. Collecting sources, comparing them, and producing a briefing', 'B. Rendering a 3D game engine', 'C. Repairing a keyboard', 'D. Replacing a power supply'], 'A', 'That is a classic research-agent workflow.'],
-          ['Why is memory hygiene important?', ['A. Stored facts shape later behavior, so bad memory can mislead the agent', 'B. It only affects UI color', 'C. It stops all APIs', 'D. It matters only for slides'], 'A', 'Poor memory can damage future outputs.'],
-          ['What is a good reason not to use RAG for a task?', ['A. The answer is already simple and present in context', 'B. You want more moving parts', 'C. You dislike relevance', 'D. You need more latency'], 'A', 'Extra retrieval is not always necessary.'],
-          ['How does product trust usually grow?', ['A. Through clear actions, clear limits, and understandable results', 'B. Through mystery and silence', 'C. Through random outputs', 'D. Through constant jargon'], 'A', 'Trust rises when the system is transparent and consistent.'],
-          ['What is the best summary of ROI for an agent project?', ['A. Whether the value created beats the setup and operating cost', 'B. The number of prompts used', 'C. The size of the logo', 'D. The number of tabs open'], 'A', 'Return on investment compares benefit with cost.']
-        ]
-      },
-      {
-        level: 'Hard',
-        intro: 'These questions ask for deeper judgment across reliability, architecture, safety, and strategy.',
-        questions: [
-          ['A team wants one agent to research, draft, approve, and deploy financial actions automatically. What is the strongest concern?', ['A. The font size is too small', 'B. High-risk actions need stronger separation, checks, and approvals', 'C. The workflow has too few colors', 'D. The model should avoid all tools'], 'B', 'High-risk tasks should include role separation, validation, and approval gates.'],
-          ['Why can a single powerful model still fail in production?', ['A. Because real systems also depend on prompts, tools, permissions, state, and evaluation', 'B. Because models only work on Tuesdays', 'C. Because browsers always block them', 'D. Because accuracy never matters'], 'A', 'Production quality is about the whole system, not just the model.'],
-          ['When is a multi-agent design worse than a single-agent design?', ['A. When the problem is small and specialization adds needless overhead', 'B. When the problem needs review', 'C. When tools exist', 'D. When logs are enabled'], 'A', 'Extra coordination is not free; it should earn its complexity.'],
-          ['Why is prompt injection especially dangerous for tool-using agents?', ['A. Because manipulated instructions can lead to unsafe actions in connected systems', 'B. Because it changes CSS automatically', 'C. Because it reduces image quality', 'D. Because it deletes keyboards'], 'A', 'Tool access increases the real-world impact of manipulated instructions.'],
-          ['What is the best reason to keep a human-in-the-loop for some workflows even when the model is strong?', ['A. Because some judgments carry legal, financial, or ethical weight', 'B. Because humans enjoy waiting', 'C. Because tools cannot return text', 'D. Because prompts should stay hidden'], 'A', 'Risky domains often need human oversight regardless of model quality.'],
-          ['Which design choice most improves long-term maintainability?', ['A. Clear instructions, narrow tools, logs, tests, and modular workflows', 'B. Huge prompts with no structure', 'C. Hidden behaviors and no monitoring', 'D. Random role definitions'], 'A', 'Maintainability grows when the system is observable, modular, and testable.'],
-          ['Why is it risky to judge an agent only by a polished demo?', ['A. Demos often hide edge cases, failures, and operational reality', 'B. Demos use too much color', 'C. Demos remove all context windows', 'D. Demos make APIs impossible'], 'A', 'Real reliability appears under varied real tasks, not just ideal paths.'],
-          ['A company wants better answers from its internal agent. What should it usually improve first before jumping to fine-tuning?', ['A. Grounding, instructions, retrieval quality, and workflow design', 'B. Office furniture', 'C. The domain name only', 'D. The quiz colors'], 'A', 'Many quality problems come from weak data flow and system design before model tuning.'],
-          ['What is the most complete explanation of trust in agent products?', ['A. Trust comes from accuracy, transparency, safe boundaries, and predictable behavior over time', 'B. Trust comes only from brand color', 'C. Trust comes from longer answers', 'D. Trust comes from having the biggest model name'], 'A', 'Trust is earned through repeated reliable, understandable behavior.'],
-          ['What mindset best fits the future of agent work?', ['A. Learn to direct, evaluate, and improve systems rather than treat them as magic', 'B. Wait for perfect autonomy before learning anything', 'C. Avoid workflows entirely', 'D. Focus only on buzzwords'], 'A', 'The most useful long-term skill is practical control and clear judgment around AI systems.']
-        ]
-      }
-    ];
-
-    const flatQuizData = quizData.flatMap(group =>
-      group.questions.map((item, index) => ({
-        level: group.level,
-        sectionIntro: group.intro,
-        localIndex: index + 1,
-        question: item[0],
-        options: item[1],
-        answer: item[2],
-        explanation: item[3]
-      }))
-    );
-
-    const quizList = document.getElementById('quiz-list');
-    const quizProgress = document.getElementById('quiz-progress');
-    const scoreSummary = document.getElementById('score-summary');
-    const filterButtons = Array.from(document.querySelectorAll('.quiz-filter-button'));
-    const submitQuizButton = document.getElementById('submit-quiz');
-    const resetQuizButton = document.getElementById('reset-quiz');
-    const answers = new Map();
-    let activeFilter = 'All';
-    let submitted = false;
-
-    function questionNumberText(index) {
-      return `Question ${index + 1} of ${flatQuizData.length}`;
-    }
-
-    function buildQuizMarkup() {
-      const filtered = flatQuizData.filter(item => activeFilter === 'All' || item.level === activeFilter);
-      if (!filtered.length) {
-        quizList.innerHTML = '<div class="quiz-empty">No questions in this filter yet.</div>';
-        return;
-      }
-
-      quizList.innerHTML = filtered.map(item => {
-        const globalIndex = flatQuizData.indexOf(item);
-        const selected = answers.get(globalIndex);
-        const revealedClass = submitted ? ' revealed' : '';
-        const correctClass = submitted && selected === item.answer ? ' is-correct' : '';
-        const wrongClass = submitted && selected && selected !== item.answer ? ' is-wrong' : '';
-        const options = item.options.map(option => {
-          const letter = option.split('.')[0];
-          const selectedClass = selected === letter ? ' selected' : '';
-          const correctChoice = submitted && item.answer === letter ? ' correct-choice' : '';
-          const wrongChoice = submitted && selected === letter && item.answer !== letter ? ' wrong-choice' : '';
-          return `<button type="button" class="quiz-option-button${selectedClass}${correctChoice}${wrongChoice}" data-question="${globalIndex}" data-choice="${letter}">${option}</button>`;
-        }).join('');
-
-        return `
-          <article class="quiz-card${revealedClass}${correctClass}${wrongClass}" data-level="${item.level}" data-question-card="${globalIndex}">
-            <div class="quiz-top">
-              <span class="quiz-badge">${item.level}</span>
-              <span class="quiz-note" style="display:block; margin-top:0;">${questionNumberText(globalIndex)}</span>
-            </div>
-            <h4>${item.question}</h4>
-            <div class="quiz-options">${options}</div>
-            <div class="quiz-answer">Correct answer: ${item.answer}</div>
-            <p class="quiz-note explanation">${item.explanation}</p>
-          </article>
-        `;
-      }).join('');
-    }
-
-    function updateProgress() {
-      quizProgress.textContent = `Answered ${answers.size} of ${flatQuizData.length}`;
-    }
-
-    function updateSummary() {
-      if (!submitted) {
-        scoreSummary.innerHTML = `
-          <h3>Your score will appear here</h3>
-          <p>Select your answers, then press <strong>Submit quiz</strong> to get your total score, percentage, and difficulty breakdown.</p>
-        `;
-        return;
-      }
-
-      let totalCorrect = 0;
-      const perLevel = { Simple: { correct: 0, total: 0 }, Medium: { correct: 0, total: 0 }, Hard: { correct: 0, total: 0 } };
-      flatQuizData.forEach((item, index) => {
-        perLevel[item.level].total += 1;
-        if (answers.get(index) === item.answer) {
-          totalCorrect += 1;
-          perLevel[item.level].correct += 1;
-        }
-      });
-      const unanswered = flatQuizData.length - answers.size;
-      const percent = Math.round((totalCorrect / flatQuizData.length) * 100);
-      scoreSummary.innerHTML = `
-        <h3>Your total score: ${totalCorrect} / ${flatQuizData.length}</h3>
-        <p>You scored ${percent}%. ${unanswered ? `You left ${unanswered} question${unanswered === 1 ? '' : 's'} unanswered.` : 'You answered every question.'}</p>
-        <div class="score-grid">
-          <div class="score-chip"><strong>${totalCorrect}</strong><span>Correct answers</span></div>
-          <div class="score-chip"><strong>${percent}%</strong><span>Overall score</span></div>
-          <div class="score-chip"><strong>${perLevel.Simple.correct}/${perLevel.Simple.total}</strong><span>Simple</span></div>
-          <div class="score-chip"><strong>${perLevel.Medium.correct}/${perLevel.Medium.total}</strong><span>Medium</span></div>
-          <div class="score-chip"><strong>${perLevel.Hard.correct}/${perLevel.Hard.total}</strong><span>Hard</span></div>
-          <div class="score-chip"><strong>${answers.size}</strong><span>Questions answered</span></div>
-          <div class="score-chip"><strong>${flatQuizData.length - totalCorrect}</strong><span>Not correct</span></div>
-          <div class="score-chip"><strong>${unanswered}</strong><span>Unanswered</span></div>
-        </div>
-      `;
-    }
-
-    function renderQuiz() {
-      buildQuizMarkup();
-      updateProgress();
-      updateSummary();
-    }
-
-    quizList.addEventListener('click', (event) => {
-      const button = event.target.closest('.quiz-option-button');
-      if (!button || submitted) return;
-      const questionIndex = Number(button.dataset.question);
-      answers.set(questionIndex, button.dataset.choice);
-      renderQuiz();
-    });
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        activeFilter = button.dataset.filter;
-        filterButtons.forEach(item => item.classList.toggle('active', item === button));
-        renderQuiz();
-      });
-    });
-
-    submitQuizButton.addEventListener('click', () => {
-      submitted = true;
-      renderQuiz();
-      scoreSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    resetQuizButton.addEventListener('click', () => {
-      answers.clear();
-      submitted = false;
-      activeFilter = 'All';
-      filterButtons.forEach(item => item.classList.toggle('active', item.dataset.filter === 'All'));
-      renderQuiz();
-      scoreSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    renderQuiz();
   </script>
 
 </body>
