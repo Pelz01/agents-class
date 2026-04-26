@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agents.class | Module 04 Slides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #090909;
+  --panel: #141414;
+  --panel-2: #1b1b1b;
+  --line: #2b2b2b;
+  --text: #f5f5f5;
+  --muted: #a3a3a3;
+  --accent: #ff5a1f;
+  --accent-soft: rgba(255,90,31,0.12);
+  --success: #86efac;
+  --danger: #fca5a5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
+a { color: inherit; text-decoration: none; }
+
+body { overflow: hidden; }
+.deck { width: 100vw; height: 100vh; position: relative; }
+.slide { position: absolute; inset: 0; display: none; padding: 3.2rem; background: radial-gradient(circle at top right, rgba(255,90,31,0.16), transparent 28%), var(--bg); overflow-y: auto; }
+.slide.active { display: block; }
+.slide-inner { max-width: 1180px; margin: 0 auto; min-height: calc(100vh - 9rem); display: flex; flex-direction: column; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; display: inline-block; }
+h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.08; }
+h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+p { color: var(--muted); }
+.lead { font-size: 1.08rem; max-width: 980px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.15rem; }
+.card h3 { font-size: 1rem; margin-bottom: .45rem; }
+.badge { display: inline-flex; padding: .35rem .7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: .74rem; font-weight: 800; margin-bottom: .9rem; }
+ul { margin-left: 1.1rem; display: grid; gap: .75rem; color: var(--muted); }
+.footer { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; z-index: 30; }
+.controls, .links { display: flex; gap: .7rem; flex-wrap: wrap; }
+.btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.progress-wrap { flex: 1; height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; }
+.progress { height: 100%; width: 0; background: var(--accent); }
+.indicator { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+.small-note { margin-top: 1rem; color: var(--muted); font-size: .92rem; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .slide { padding: 1.2rem; } .footer { flex-direction: column; align-items: stretch; } .progress-wrap { width: 100%; } }
+</style>
+</head>
+<body>
+  <main class="deck">
+      <section class="slide active" data-slide="1">
+        <div class="slide-inner">
+          <div class="eyebrow">Module 04</div>
+          <h1>Agent Building Blocks</h1>
+          <p class="lead">Break an agent into understandable parts so the architecture feels simple.</p>
+          <div class="grid">
+            <div class="card">
+              <h3>What this deck covers</h3>
+              <ul><li>Understand the core idea behind agent building blocks.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul>
+            </div>
+            <div class="card">
+              <h3>How to use this module</h3>
+              <p>Move slide by slide through the lessons. Each lesson keeps the simple explanation, technical translation, real-world example, and mini exercise together on one screen.</p>
+              <p class="small-note">Keyboard: right arrow / space = next, left arrow = previous.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+          <section class="slide" data-slide="2">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.1</div>
+              <h2>The Basic Agent Loop</h2>
+              <p class="lead">Most agents follow a loop: understand, plan, act, observe, adjust, and report.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>In simple terms, Most agents follow a loop: understand, plan, act, observe, adjust, and report. Think of it as building a small team out of clear roles instead of one mysterious black box. The goal is not to impress you with jargon but to make the idea usable.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: The Basic Agent Loop usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain the basic agent loop in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="3">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.2</div>
+              <h2>Instructions and System Prompts</h2>
+              <p class="lead">The instruction layer defines the agent’s role, tone, rules, and limits.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>A beginner way to understand this is: The instruction layer defines the agent’s role, tone, rules, and limits. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: when builders talk about instructions and system prompts, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where instructions and system prompts shows up inside it.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="4">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.3</div>
+              <h2>State and Working Memory</h2>
+              <p class="lead">State is the short-term scratchpad that helps the agent remember what is happening right now.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>At the simplest level, State is the short-term scratchpad that helps the agent remember what is happening right now. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: State and Working Memory usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain state and working memory in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="5">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.4</div>
+              <h2>Tools and Functions</h2>
+              <p class="lead">Tools let the model do things outside plain text, such as opening files or calling APIs.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>In simple terms, Tools let the model do things outside plain text, such as opening files or calling APIs. Think of it as building a small team out of clear roles instead of one mysterious black box. The goal is not to impress you with jargon but to make the idea usable.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: when builders talk about tools and functions, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where tools and functions shows up inside it.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="6">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.5</div>
+              <h2>Environment and Permissions</h2>
+              <p class="lead">Every agent lives inside an environment with boundaries about what it can read, change, or send.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>A beginner way to understand this is: Every agent lives inside an environment with boundaries about what it can read, change, or send. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: Environment and Permissions usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain environment and permissions in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="7">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.6</div>
+              <h2>Feedback Loops</h2>
+              <p class="lead">Feedback helps the agent compare what happened against what was supposed to happen.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>At the simplest level, Feedback helps the agent compare what happened against what was supposed to happen. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: when builders talk about feedback loops, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where feedback loops shows up inside it.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="8">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.7</div>
+              <h2>Stopping Conditions</h2>
+              <p class="lead">A reliable agent knows when a task is complete, blocked, unsafe, or no longer worth continuing.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>In simple terms, A reliable agent knows when a task is complete, blocked, unsafe, or no longer worth continuing. Think of it as building a small team out of clear roles instead of one mysterious black box. The goal is not to impress you with jargon but to make the idea usable.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: Stopping Conditions usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain stopping conditions in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+          <section class="slide" data-slide="9">
+            <div class="slide-inner">
+              <div class="eyebrow">Lesson 4.8</div>
+              <h2>Reporting Results Clearly</h2>
+              <p class="lead">The final output should explain what was done, what changed, what failed, and what comes next.</p>
+              <div class="grid">
+                <div class="card">
+                  <span class="badge">Simple explanation</span>
+                  <p>A beginner way to understand this is: The final output should explain what was done, what changed, what failed, and what comes next. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Technical translation</span>
+                  <p>Technical translation: when builders talk about reporting results clearly, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Why it matters</span>
+                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
+                </div>
+                <div class="card">
+                  <span class="badge">Example + exercise</span>
+                  <p><strong style="color:var(--text);">Example:</strong> A coding agent may read files, plan edits, run tests, inspect errors, and report what changed.</p>
+                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where reporting results clearly shows up inside it.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+      <section class="slide" data-slide="10">
+        <div class="slide-inner">
+          <div class="eyebrow">Module complete</div>
+          <h2>Agent Building Blocks wrapped</h2>
+          <p class="lead">You have finished this module deck. Continue to the next module, jump to the quiz slides, or go back to the full course.</p>
+          <div class="grid">
+            <div class="card">
+              <h3>Where to go next</h3>
+              <ul>
+                <li>Continue to the next module deck</li>
+                <li>Open the quiz slide deck for review</li>
+                <li>Return to the full course page if you want the handbook view</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Quick links</h3>
+              <div class="links">
+                <a class="btn" href="module-03.html">Previous module slides</a>
+                <a class="btn primary" href="module-05.html">Next module slides</a>
+                <a class="btn" href="../index.html">Full course</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  <div class="footer">
+    <div class="links">
+      <a class="btn" href="index.html">Slides library</a>
+      <a class="btn" href="../index.html">Full course</a>
+      <a class="btn" href="quiz.html">Quiz slides</a>
+    </div>
+    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+    <div class="indicator" id="indicator">1 / 10</div>
+    <div class="controls">
+      <button class="btn" id="prev">← Prev</button>
+      <button class="btn primary" id="next">Next →</button>
+    </div>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progress = document.getElementById('progress');
+    const indicator = document.getElementById('indicator');
+    let current = 0;
+    function render() {
+      slides.forEach((slide, index) => slide.classList.toggle('active', index === current));
+      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+      indicator.textContent = `${current + 1} / ${slides.length}`;
+    }
+    document.getElementById('prev').addEventListener('click', () => { current = (current - 1 + slides.length) % slides.length; render(); });
+    document.getElementById('next').addEventListener('click', () => { current = (current + 1) % slides.length; render(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { current = (current + 1) % slides.length; render(); }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { current = (current - 1 + slides.length) % slides.length; render(); }
+    });
+    render();
+  </script>
+</body>
+</html>
