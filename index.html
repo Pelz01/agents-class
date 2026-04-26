@@ -88,18 +88,44 @@
     .module-actions a { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); font-size: 0.9rem; font-weight: 600; }
     .module-actions a:hover { border-color: var(--accent); }
     .quiz-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .quiz-controls { display: flex; gap: 1rem; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 1rem; }
+    .quiz-filter { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+    .quiz-filter-button { border: 1px solid var(--line); background: var(--panel-2); color: var(--text); border-radius: 999px; padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+    .quiz-filter-button.active, .quiz-filter-button:hover { border-color: var(--accent); background: var(--accent-soft); }
+    .quiz-progress { color: var(--muted); font-size: 0.95rem; }
+    .score-summary { background: linear-gradient(180deg, rgba(255,90,31,0.09), transparent), var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.4rem; }
+    .score-summary h3 { margin-bottom: 0.45rem; }
+    .score-summary p { color: var(--muted); }
+    .score-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.85rem; margin-top: 1rem; }
+    .score-chip { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 1rem; }
+    .score-chip strong { display: block; color: var(--accent); font-size: 1.35rem; }
+    .score-chip span { color: var(--muted); font-size: 0.86rem; }
     .quiz-level { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.5rem; }
     .quiz-level h3 { margin-bottom: 0.4rem; }
     .quiz-level p { color: var(--muted); margin-bottom: 1rem; }
-    .quiz-card { border: 1px solid var(--line); background: var(--panel-2); border-radius: 18px; padding: 1rem; }
+    .quiz-card { border: 1px solid var(--line); background: var(--panel-2); border-radius: 18px; padding: 1rem; transition: 0.2s ease; }
+    .quiz-card.is-correct { border-color: rgba(134,239,172,0.55); }
+    .quiz-card.is-wrong { border-color: rgba(248,113,113,0.55); }
     .quiz-card + .quiz-card { margin-top: 0.85rem; }
     .quiz-top { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem; }
     .quiz-badge { display: inline-flex; padding: 0.35rem 0.7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
     .quiz-card h4 { font-size: 1rem; margin-bottom: 0.65rem; }
-    .quiz-options { display: grid; gap: 0.55rem; margin: 0.8rem 0; }
-    .quiz-option { color: var(--muted); }
+    .quiz-options { display: grid; gap: 0.6rem; margin: 0.8rem 0; }
+    .quiz-option-button { width: 100%; text-align: left; border: 1px solid var(--line); background: rgba(255,255,255,0.02); color: var(--muted); border-radius: 14px; padding: 0.9rem 1rem; cursor: pointer; font: inherit; transition: 0.2s ease; }
+    .quiz-option-button:hover { border-color: var(--accent); color: var(--text); }
+    .quiz-option-button.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+    .quiz-option-button.correct-choice { border-color: rgba(134,239,172,0.8); background: rgba(134,239,172,0.12); color: var(--text); }
+    .quiz-option-button.wrong-choice { border-color: rgba(248,113,113,0.8); background: rgba(248,113,113,0.12); color: var(--text); }
+    .quiz-answer, .quiz-note.explanation { display: none; }
+    .quiz-card.revealed .quiz-answer, .quiz-card.revealed .quiz-note.explanation { display: block; }
     .quiz-answer { color: var(--success); font-weight: 600; margin-top: 0.5rem; }
     .quiz-note { color: var(--muted); font-size: 0.92rem; }
+    .quiz-footer-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+    .quiz-submit, .quiz-reset { border: 1px solid var(--line); border-radius: 999px; padding: 0.95rem 1.25rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
+    .quiz-submit { background: var(--accent); color: white; border-color: var(--accent); }
+    .quiz-reset { background: var(--panel); color: var(--text); }
+    .quiz-empty { color: var(--muted); padding: 1rem 0; }
+    .quiz-hidden { display: none; }
     .lesson-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.35rem; }
     .lesson-meta { color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.74rem; font-weight: 700; }
     .lesson-card h3 { font-size: 1.3rem; margin-top: 0.5rem; margin-bottom: 0.55rem; }
@@ -119,10 +145,11 @@
     @media (max-width: 1200px) {
       .shell { grid-template-columns: 1fr; }
       .sidebar { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
-      .overview-grid, .module-summary-grid, .track-grid, .capstone-grid, .glossary-grid, .lessons-wrap, .lesson-grid { grid-template-columns: 1fr; }
+      .overview-grid, .module-summary-grid, .track-grid, .capstone-grid, .glossary-grid, .lessons-wrap, .lesson-grid, .score-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .hero, .overview, .modules, .footer { padding-left: 1rem; padding-right: 1rem; }
+      .course-toolbar-inner { padding-left: 1rem; padding-right: 1rem; }
       .hero { padding-top: 2.2rem; }
       .hero p { font-size: 1rem; }
       .btn { width: 100%; }
@@ -3662,10 +3689,27 @@
       <section class="overview" id="quiz">
         <div class="overview-inner">
           <div class="panel">
-            <h2>End-of-course quiz</h2>
-            <p>Here are 50 questions based on what the course taught. The quiz starts simple, moves to medium, and ends hard. Each question includes the answer and a short explanation so it can also work as revision material.</p>
+            <h2>Interactive end-of-course quiz</h2>
+            <p>Choose your answers, move through all 50 questions, and submit at the end to get your total score. The quiz starts simple, moves to medium, and ends hard based on what the course taught.</p>
+            <div class="quiz-controls">
+              <div class="quiz-filter" id="quiz-filter">
+                <button type="button" class="quiz-filter-button active" data-filter="All">All questions</button>
+                <button type="button" class="quiz-filter-button" data-filter="Simple">Simple</button>
+                <button type="button" class="quiz-filter-button" data-filter="Medium">Medium</button>
+                <button type="button" class="quiz-filter-button" data-filter="Hard">Hard</button>
+              </div>
+              <div class="quiz-progress" id="quiz-progress">Answered 0 of 50</div>
+            </div>
+          </div>
+          <div class="score-summary" id="score-summary">
+            <h3>Your score will appear here</h3>
+            <p>Select your answers, then press <strong>Submit quiz</strong> to get your total score, percentage, and difficulty breakdown.</p>
           </div>
           <div class="quiz-grid" id="quiz-list"></div>
+          <div class="quiz-footer-actions">
+            <button type="button" class="quiz-submit" id="submit-quiz">Submit quiz</button>
+            <button type="button" class="quiz-reset" id="reset-quiz">Reset answers</button>
+          </div>
         </div>
       </section>
 
@@ -3823,25 +3867,146 @@
       }
     ];
 
+    const flatQuizData = quizData.flatMap(group =>
+      group.questions.map((item, index) => ({
+        level: group.level,
+        sectionIntro: group.intro,
+        localIndex: index + 1,
+        question: item[0],
+        options: item[1],
+        answer: item[2],
+        explanation: item[3]
+      }))
+    );
+
     const quizList = document.getElementById('quiz-list');
-    quizData.forEach(group => {
-      const section = document.createElement('div');
-      section.className = 'quiz-level';
-      const cards = group.questions.map((item, idx) => `
-        <div class="quiz-card">
-          <div class="quiz-top">
-            <span class="quiz-badge">${group.level}</span>
-            <span class="quiz-note">Question ${idx + 1} in ${group.level.toLowerCase()} set</span>
-          </div>
-          <h4>${item[0]}</h4>
-          <div class="quiz-options">${item[1].map(opt => `<div class="quiz-option">${opt}</div>`).join('')}</div>
-          <div class="quiz-answer">Answer: ${item[2]}</div>
-          <p class="quiz-note">${item[3]}</p>
+    const quizProgress = document.getElementById('quiz-progress');
+    const scoreSummary = document.getElementById('score-summary');
+    const filterButtons = Array.from(document.querySelectorAll('.quiz-filter-button'));
+    const submitQuizButton = document.getElementById('submit-quiz');
+    const resetQuizButton = document.getElementById('reset-quiz');
+    const answers = new Map();
+    let activeFilter = 'All';
+    let submitted = false;
+
+    function questionNumberText(index) {
+      return `Question ${index + 1} of ${flatQuizData.length}`;
+    }
+
+    function buildQuizMarkup() {
+      const filtered = flatQuizData.filter(item => activeFilter === 'All' || item.level === activeFilter);
+      if (!filtered.length) {
+        quizList.innerHTML = '<div class="quiz-empty">No questions in this filter yet.</div>';
+        return;
+      }
+
+      quizList.innerHTML = filtered.map(item => {
+        const globalIndex = flatQuizData.indexOf(item);
+        const selected = answers.get(globalIndex);
+        const revealedClass = submitted ? ' revealed' : '';
+        const correctClass = submitted && selected === item.answer ? ' is-correct' : '';
+        const wrongClass = submitted && selected && selected !== item.answer ? ' is-wrong' : '';
+        const options = item.options.map(option => {
+          const letter = option.split('.')[0];
+          const selectedClass = selected === letter ? ' selected' : '';
+          const correctChoice = submitted && item.answer === letter ? ' correct-choice' : '';
+          const wrongChoice = submitted && selected === letter && item.answer !== letter ? ' wrong-choice' : '';
+          return `<button type="button" class="quiz-option-button${selectedClass}${correctChoice}${wrongChoice}" data-question="${globalIndex}" data-choice="${letter}">${option}</button>`;
+        }).join('');
+
+        return `
+          <article class="quiz-card${revealedClass}${correctClass}${wrongClass}" data-level="${item.level}" data-question-card="${globalIndex}">
+            <div class="quiz-top">
+              <span class="quiz-badge">${item.level}</span>
+              <span class="quiz-note" style="display:block; margin-top:0;">${questionNumberText(globalIndex)}</span>
+            </div>
+            <h4>${item.question}</h4>
+            <div class="quiz-options">${options}</div>
+            <div class="quiz-answer">Correct answer: ${item.answer}</div>
+            <p class="quiz-note explanation">${item.explanation}</p>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function updateProgress() {
+      quizProgress.textContent = `Answered ${answers.size} of ${flatQuizData.length}`;
+    }
+
+    function updateSummary() {
+      if (!submitted) {
+        scoreSummary.innerHTML = `
+          <h3>Your score will appear here</h3>
+          <p>Select your answers, then press <strong>Submit quiz</strong> to get your total score, percentage, and difficulty breakdown.</p>
+        `;
+        return;
+      }
+
+      let totalCorrect = 0;
+      const perLevel = { Simple: { correct: 0, total: 0 }, Medium: { correct: 0, total: 0 }, Hard: { correct: 0, total: 0 } };
+      flatQuizData.forEach((item, index) => {
+        perLevel[item.level].total += 1;
+        if (answers.get(index) === item.answer) {
+          totalCorrect += 1;
+          perLevel[item.level].correct += 1;
+        }
+      });
+      const unanswered = flatQuizData.length - answers.size;
+      const percent = Math.round((totalCorrect / flatQuizData.length) * 100);
+      scoreSummary.innerHTML = `
+        <h3>Your total score: ${totalCorrect} / ${flatQuizData.length}</h3>
+        <p>You scored ${percent}%. ${unanswered ? `You left ${unanswered} question${unanswered === 1 ? '' : 's'} unanswered.` : 'You answered every question.'}</p>
+        <div class="score-grid">
+          <div class="score-chip"><strong>${totalCorrect}</strong><span>Correct answers</span></div>
+          <div class="score-chip"><strong>${percent}%</strong><span>Overall score</span></div>
+          <div class="score-chip"><strong>${perLevel.Simple.correct}/${perLevel.Simple.total}</strong><span>Simple</span></div>
+          <div class="score-chip"><strong>${perLevel.Medium.correct}/${perLevel.Medium.total}</strong><span>Medium</span></div>
+          <div class="score-chip"><strong>${perLevel.Hard.correct}/${perLevel.Hard.total}</strong><span>Hard</span></div>
+          <div class="score-chip"><strong>${answers.size}</strong><span>Questions answered</span></div>
+          <div class="score-chip"><strong>${flatQuizData.length - totalCorrect}</strong><span>Not correct</span></div>
+          <div class="score-chip"><strong>${unanswered}</strong><span>Unanswered</span></div>
         </div>
-      `).join('');
-      section.innerHTML = `<h3>${group.level}</h3><p>${group.intro}</p>${cards}`;
-      quizList.appendChild(section);
+      `;
+    }
+
+    function renderQuiz() {
+      buildQuizMarkup();
+      updateProgress();
+      updateSummary();
+    }
+
+    quizList.addEventListener('click', (event) => {
+      const button = event.target.closest('.quiz-option-button');
+      if (!button || submitted) return;
+      const questionIndex = Number(button.dataset.question);
+      answers.set(questionIndex, button.dataset.choice);
+      renderQuiz();
     });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.classList.toggle('active', item === button));
+        renderQuiz();
+      });
+    });
+
+    submitQuizButton.addEventListener('click', () => {
+      submitted = true;
+      renderQuiz();
+      scoreSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    resetQuizButton.addEventListener('click', () => {
+      answers.clear();
+      submitted = false;
+      activeFilter = 'All';
+      filterButtons.forEach(item => item.classList.toggle('active', item.dataset.filter === 'All'));
+      renderQuiz();
+      scoreSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    renderQuiz();
   </script>
 
 </body>
