@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>agents.class | Module 06 Slides</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>agents.class | Module 06 Slides</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"><style>
 :root {
-  --bg: #090909;
-  --panel: #141414;
-  --panel-2: #1b1b1b;
-  --line: #2b2b2b;
+  --bg: #0a0a0a;
+  --panel: #121212;
+  --panel-2: #171717;
+  --line: #262626;
   --text: #f5f5f5;
   --muted: #a3a3a3;
   --accent: #ff5a1f;
-  --accent-soft: rgba(255,90,31,0.12);
+  --accent-soft: rgba(255, 90, 31, 0.12);
   --success: #86efac;
   --danger: #fca5a5;
+  --max: 1240px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
@@ -26,324 +18,27 @@ a { color: inherit; text-decoration: none; }
 
 body { overflow: hidden; }
 .deck { width: 100vw; height: 100vh; position: relative; }
-.slide { position: absolute; inset: 0; display: none; padding: 3.2rem; background: radial-gradient(circle at top right, rgba(255,90,31,0.16), transparent 28%), var(--bg); overflow-y: auto; }
+.slide { position: absolute; inset: 0; display: none; padding: 3rem; background: radial-gradient(circle at top right, rgba(255,90,31,0.16), transparent 28%), var(--bg); overflow-y: auto; }
 .slide.active { display: block; }
-.slide-inner { max-width: 1180px; margin: 0 auto; min-height: calc(100vh - 9rem); display: flex; flex-direction: column; }
-.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; display: inline-block; }
-h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.08; }
-h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+.inner { max-width: 1180px; margin: 0 auto; min-height: calc(100vh - 8rem); display: flex; flex-direction: column; }
+.eyebrow { display: inline-block; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; }
+h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.06; }
+h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
 p { color: var(--muted); }
-.lead { font-size: 1.08rem; max-width: 980px; }
+.lead { font-size: 1.06rem; max-width: 980px; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.15rem; }
-.card h3 { font-size: 1rem; margin-bottom: .45rem; }
-.badge { display: inline-flex; padding: .35rem .7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: .74rem; font-weight: 800; margin-bottom: .9rem; }
-ul { margin-left: 1.1rem; display: grid; gap: .75rem; color: var(--muted); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.1rem; }
+.card h3 { margin-bottom: .45rem; font-size: 1rem; }
+.badge { display: inline-flex; padding: .35rem .7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: .74rem; font-weight: 800; margin-bottom: .75rem; }
+ul { margin-left: 1.1rem; display: grid; gap: .7rem; color: var(--muted); }
+.links, .controls { display: flex; gap: .7rem; flex-wrap: wrap; }
 .footer { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; z-index: 30; }
-.controls, .links { display: flex; gap: .7rem; flex-wrap: wrap; }
-.btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; cursor: pointer; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
 .progress-wrap { flex: 1; height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; }
 .progress { height: 100%; width: 0; background: var(--accent); }
 .indicator { color: var(--muted); font-size: .9rem; white-space: nowrap; }
-.small-note { margin-top: 1rem; color: var(--muted); font-size: .92rem; }
+.small { color: var(--muted); font-size: .92rem; margin-top: .8rem; }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .slide { padding: 1.2rem; } .footer { flex-direction: column; align-items: stretch; } .progress-wrap { width: 100%; } }
-</style>
-</head>
-<body>
-  <main class="deck">
-      <section class="slide active" data-slide="1">
-        <div class="slide-inner">
-          <div class="eyebrow">Module 06</div>
-          <h1>Tools, APIs, and MCP</h1>
-          <p class="lead">Show how agents connect to the outside world in practical, modern ways.</p>
-          <div class="grid">
-            <div class="card">
-              <h3>What this deck covers</h3>
-              <ul><li>Understand the core idea behind tools, apis, and mcp.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul>
-            </div>
-            <div class="card">
-              <h3>How to use this module</h3>
-              <p>Move slide by slide through the lessons. Each lesson keeps the simple explanation, technical translation, real-world example, and mini exercise together on one screen.</p>
-              <p class="small-note">Keyboard: right arrow / space = next, left arrow = previous.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-          <section class="slide" data-slide="2">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.1</div>
-              <h2>Why Tools Matter</h2>
-              <p class="lead">Tools are what turn a smart text engine into a worker that can actually do useful tasks.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, Tools are what turn a smart text engine into a worker that can actually do useful tasks. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Why Tools Matter usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain why tools matter in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="3">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.2</div>
-              <h2>APIs for Beginners</h2>
-              <p class="lead">An API is a structured way for one program to ask another program for data or actions.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: An API is a structured way for one program to ask another program for data or actions. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about apis for beginners, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where apis for beginners shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="4">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.3</div>
-              <h2>Files, Browsers, and Terminals</h2>
-              <p class="lead">Many practical agents work by reading files, browsing pages, and running commands inside a controlled environment.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>At the simplest level, Many practical agents work by reading files, browsing pages, and running commands inside a controlled environment. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Files, Browsers, and Terminals usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain files, browsers, and terminals in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="5">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.4</div>
-              <h2>What MCP Is</h2>
-              <p class="lead">Model Context Protocol is a standard way to plug tools into AI systems without inventing a custom connection every time.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, Model Context Protocol is a standard way to plug tools into AI systems without inventing a custom connection every time. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about what mcp is, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where what mcp is shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="6">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.5</div>
-              <h2>Tool Calling Explained</h2>
-              <p class="lead">Tool calling means the model chooses a function, passes inputs, gets a result, and continues with that result.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: Tool calling means the model chooses a function, passes inputs, gets a result, and continues with that result. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Tool Calling Explained usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain tool calling explained in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="7">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.6</div>
-              <h2>Permissions and Safety Boundaries</h2>
-              <p class="lead">Each tool should have clear limits so the agent can help without becoming risky.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>At the simplest level, Each tool should have clear limits so the agent can help without becoming risky. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about permissions and safety boundaries, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where permissions and safety boundaries shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="8">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.7</div>
-              <h2>Designing Good Tool Interfaces</h2>
-              <p class="lead">Simple tool names, clean parameters, and predictable outputs make agents easier to build and trust.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, Simple tool names, clean parameters, and predictable outputs make agents easier to build and trust. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Designing Good Tool Interfaces usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain designing good tool interfaces in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="9">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 6.8</div>
-              <h2>Debugging Tool Failures</h2>
-              <p class="lead">When a tool fails, the agent should inspect the error, retry smartly, or ask for help.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: When a tool fails, the agent should inspect the error, retry smartly, or ask for help. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about debugging tool failures, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where debugging tool failures shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-      <section class="slide" data-slide="10">
-        <div class="slide-inner">
-          <div class="eyebrow">Module complete</div>
-          <h2>Tools, APIs, and MCP wrapped</h2>
-          <p class="lead">You have finished this module deck. Continue to the next module, jump to the quiz slides, or go back to the full course.</p>
-          <div class="grid">
-            <div class="card">
-              <h3>Where to go next</h3>
-              <ul>
-                <li>Continue to the next module deck</li>
-                <li>Open the quiz slide deck for review</li>
-                <li>Return to the full course page if you want the handbook view</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Quick links</h3>
-              <div class="links">
-                <a class="btn" href="module-05.html">Previous module slides</a>
-                <a class="btn primary" href="module-07.html">Next module slides</a>
-                <a class="btn" href="../index.html">Full course</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  <div class="footer">
-    <div class="links">
-      <a class="btn" href="index.html">Slides library</a>
-      <a class="btn" href="../index.html">Full course</a>
-      <a class="btn" href="quiz.html">Quiz slides</a>
-    </div>
-    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-    <div class="indicator" id="indicator">1 / 10</div>
-    <div class="controls">
-      <button class="btn" id="prev">← Prev</button>
-      <button class="btn primary" id="next">Next →</button>
-    </div>
-  </div>
-  <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const progress = document.getElementById('progress');
-    const indicator = document.getElementById('indicator');
-    let current = 0;
-    function render() {
-      slides.forEach((slide, index) => slide.classList.toggle('active', index === current));
-      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
-      indicator.textContent = `${current + 1} / ${slides.length}`;
-    }
-    document.getElementById('prev').addEventListener('click', () => { current = (current - 1 + slides.length) % slides.length; render(); });
-    document.getElementById('next').addEventListener('click', () => { current = (current + 1) % slides.length; render(); });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { current = (current + 1) % slides.length; render(); }
-      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { current = (current - 1 + slides.length) % slides.length; render(); }
-    });
-    render();
-  </script>
-</body>
-</html>
+</style></head><body><main class="deck"><section class="slide active"><div class="inner"><div class="eyebrow">Module 06</div><h1>Tools, APIs, and MCP</h1><p class="lead">Show how agents connect to the outside world in practical, modern ways.</p><div class="grid"><div class="card"><h3>What this module covers</h3><ul><li>Understand the core idea behind tools, apis, and mcp.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul></div><div class="card"><h3>How this deck works</h3><p>Each lesson gets its own slide. So the slide version mirrors the course structure instead of acting like a tiny summary.</p><p class="small">Use arrow keys or the next and previous buttons.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.1</div><h2>Why Tools Matter</h2><p class="lead">Tools are what turn a smart text engine into a worker that can actually do useful tasks.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, Tools are what turn a smart text engine into a worker that can actually do useful tasks. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Why Tools Matter usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain why tools matter in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.2</div><h2>APIs for Beginners</h2><p class="lead">An API is a structured way for one program to ask another program for data or actions.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: An API is a structured way for one program to ask another program for data or actions. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about apis for beginners, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where apis for beginners shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.3</div><h2>Files, Browsers, and Terminals</h2><p class="lead">Many practical agents work by reading files, browsing pages, and running commands inside a controlled environment.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>At the simplest level, Many practical agents work by reading files, browsing pages, and running commands inside a controlled environment. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Files, Browsers, and Terminals usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain files, browsers, and terminals in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.4</div><h2>What MCP Is</h2><p class="lead">Model Context Protocol is a standard way to plug tools into AI systems without inventing a custom connection every time.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, Model Context Protocol is a standard way to plug tools into AI systems without inventing a custom connection every time. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about what mcp is, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where what mcp is shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.5</div><h2>Tool Calling Explained</h2><p class="lead">Tool calling means the model chooses a function, passes inputs, gets a result, and continues with that result.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: Tool calling means the model chooses a function, passes inputs, gets a result, and continues with that result. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Tool Calling Explained usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain tool calling explained in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.6</div><h2>Permissions and Safety Boundaries</h2><p class="lead">Each tool should have clear limits so the agent can help without becoming risky.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>At the simplest level, Each tool should have clear limits so the agent can help without becoming risky. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about permissions and safety boundaries, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where permissions and safety boundaries shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.7</div><h2>Designing Good Tool Interfaces</h2><p class="lead">Simple tool names, clean parameters, and predictable outputs make agents easier to build and trust.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, Simple tool names, clean parameters, and predictable outputs make agents easier to build and trust. Think of it as adding hands and connectors to a brain so it can interact with the world. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Designing Good Tool Interfaces usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain designing good tool interfaces in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 6.8</div><h2>Debugging Tool Failures</h2><p class="lead">When a tool fails, the agent should inspect the error, retry smartly, or ask for help.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: When a tool fails, the agent should inspect the error, retry smartly, or ask for help. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about debugging tool failures, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A browser tool can search a website, while an API call may fetch clean data directly from the service behind it.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where debugging tool failures shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Module complete</div><h2>Tools, APIs, and MCP wrapped</h2><p class="lead">Continue with the next module deck, move to the quiz slides, or jump back to the normal reading version.</p><div class="grid"><div class="card"><h3>Quick links</h3><div class="links"><a class="btn" href="module-05.html">← Module 05</a><a class="btn primary" href="module-07.html">Next module slides →</a><a class="btn" href="../course/module-06.html">Read module</a></div></div><div class="card"><h3>Why this format</h3><p>Slides keep the same curriculum, only the presentation changes.</p></div></div></div></section></main><div class="footer"><div class="links"><a class="btn" href="index.html">Slides library</a><a class="btn" href="../course/index.html">Course directory</a><a class="btn" href="quiz.html">Quiz slides</a></div><div class="progress-wrap"><div class="progress" id="progress"></div></div><div class="indicator" id="indicator">1 / 10</div><div class="controls"><button class="btn" id="prev">← Prev</button><button class="btn primary" id="next">Next →</button></div></div><script>const slides=Array.from(document.querySelectorAll('.slide'));const progress=document.getElementById('progress');const indicator=document.getElementById('indicator');let current=0;function render(){slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));progress.style.width=`${((current+1)/slides.length)*100}%`;indicator.textContent=`${current+1} / ${slides.length}`;}document.getElementById('prev').addEventListener('click',()=>{current=(current-1+slides.length)%slides.length;render();});document.getElementById('next').addEventListener('click',()=>{current=(current+1)%slides.length;render();});document.addEventListener('keydown',(event)=>{if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){current=(current+1)%slides.length;render();}if(event.key==='ArrowLeft'||event.key==='PageUp'){current=(current-1+slides.length)%slides.length;render();}});render();</script></body></html>

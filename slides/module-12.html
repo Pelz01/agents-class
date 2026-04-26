@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>agents.class | Module 12 Slides</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>agents.class | Module 12 Slides</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"><style>
 :root {
-  --bg: #090909;
-  --panel: #141414;
-  --panel-2: #1b1b1b;
-  --line: #2b2b2b;
+  --bg: #0a0a0a;
+  --panel: #121212;
+  --panel-2: #171717;
+  --line: #262626;
   --text: #f5f5f5;
   --muted: #a3a3a3;
   --accent: #ff5a1f;
-  --accent-soft: rgba(255,90,31,0.12);
+  --accent-soft: rgba(255, 90, 31, 0.12);
   --success: #86efac;
   --danger: #fca5a5;
+  --max: 1240px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
@@ -26,324 +18,27 @@ a { color: inherit; text-decoration: none; }
 
 body { overflow: hidden; }
 .deck { width: 100vw; height: 100vh; position: relative; }
-.slide { position: absolute; inset: 0; display: none; padding: 3.2rem; background: radial-gradient(circle at top right, rgba(255,90,31,0.16), transparent 28%), var(--bg); overflow-y: auto; }
+.slide { position: absolute; inset: 0; display: none; padding: 3rem; background: radial-gradient(circle at top right, rgba(255,90,31,0.16), transparent 28%), var(--bg); overflow-y: auto; }
 .slide.active { display: block; }
-.slide-inner { max-width: 1180px; margin: 0 auto; min-height: calc(100vh - 9rem); display: flex; flex-direction: column; }
-.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; display: inline-block; }
-h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.08; }
-h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+.inner { max-width: 1180px; margin: 0 auto; min-height: calc(100vh - 8rem); display: flex; flex-direction: column; }
+.eyebrow { display: inline-block; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; }
+h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.06; }
+h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
 p { color: var(--muted); }
-.lead { font-size: 1.08rem; max-width: 980px; }
+.lead { font-size: 1.06rem; max-width: 980px; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.15rem; }
-.card h3 { font-size: 1rem; margin-bottom: .45rem; }
-.badge { display: inline-flex; padding: .35rem .7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: .74rem; font-weight: 800; margin-bottom: .9rem; }
-ul { margin-left: 1.1rem; display: grid; gap: .75rem; color: var(--muted); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.1rem; }
+.card h3 { margin-bottom: .45rem; font-size: 1rem; }
+.badge { display: inline-flex; padding: .35rem .7rem; border-radius: 999px; background: var(--accent-soft); color: #ffb293; font-size: .74rem; font-weight: 800; margin-bottom: .75rem; }
+ul { margin-left: 1.1rem; display: grid; gap: .7rem; color: var(--muted); }
+.links, .controls { display: flex; gap: .7rem; flex-wrap: wrap; }
 .footer { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; z-index: 30; }
-.controls, .links { display: flex; gap: .7rem; flex-wrap: wrap; }
-.btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; cursor: pointer; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
 .progress-wrap { flex: 1; height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; }
 .progress { height: 100%; width: 0; background: var(--accent); }
 .indicator { color: var(--muted); font-size: .9rem; white-space: nowrap; }
-.small-note { margin-top: 1rem; color: var(--muted); font-size: .92rem; }
+.small { color: var(--muted); font-size: .92rem; margin-top: .8rem; }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .slide { padding: 1.2rem; } .footer { flex-direction: column; align-items: stretch; } .progress-wrap { width: 100%; } }
-</style>
-</head>
-<body>
-  <main class="deck">
-      <section class="slide active" data-slide="1">
-        <div class="slide-inner">
-          <div class="eyebrow">Module 12</div>
-          <h1>Business and Real-World Use Cases</h1>
-          <p class="lead">Connect the ideas to work, money, teams, and practical outcomes.</p>
-          <div class="grid">
-            <div class="card">
-              <h3>What this deck covers</h3>
-              <ul><li>Understand the core idea behind business and real-world use cases.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul>
-            </div>
-            <div class="card">
-              <h3>How to use this module</h3>
-              <p>Move slide by slide through the lessons. Each lesson keeps the simple explanation, technical translation, real-world example, and mini exercise together on one screen.</p>
-              <p class="small-note">Keyboard: right arrow / space = next, left arrow = previous.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-          <section class="slide" data-slide="2">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.1</div>
-              <h2>Where Agents Create Value</h2>
-              <p class="lead">Agents create value when they remove bottlenecks, reduce busywork, or improve decisions.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, Agents create value when they remove bottlenecks, reduce busywork, or improve decisions. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Where Agents Create Value usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain where agents create value in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="3">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.2</div>
-              <h2>Research and Knowledge Work</h2>
-              <p class="lead">Research agents can gather sources, compare options, and package findings faster than manual workflows.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: Research agents can gather sources, compare options, and package findings faster than manual workflows. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about research and knowledge work, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where research and knowledge work shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="4">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.3</div>
-              <h2>Customer Support Workflows</h2>
-              <p class="lead">Support agents can draft replies, classify tickets, and surface the right knowledge base articles.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>At the simplest level, Support agents can draft replies, classify tickets, and surface the right knowledge base articles. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Customer Support Workflows usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain customer support workflows in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="5">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.4</div>
-              <h2>Sales and Outreach</h2>
-              <p class="lead">Sales agents can prepare lead notes, draft personalized outreach, and update CRMs with the right guardrails.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, Sales agents can prepare lead notes, draft personalized outreach, and update CRMs with the right guardrails. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about sales and outreach, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where sales and outreach shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="6">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.5</div>
-              <h2>Operations and Internal Teams</h2>
-              <p class="lead">Internal agents can help with reporting, scheduling, approvals, documentation, and process follow-up.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: Internal agents can help with reporting, scheduling, approvals, documentation, and process follow-up. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Operations and Internal Teams usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain operations and internal teams in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="7">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.6</div>
-              <h2>Creative and Content Use Cases</h2>
-              <p class="lead">Content agents can brainstorm, outline, adapt, summarize, and repurpose across channels.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>At the simplest level, Content agents can brainstorm, outline, adapt, summarize, and repurpose across channels. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about creative and content use cases, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where creative and content use cases shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="8">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.7</div>
-              <h2>Cost, ROI, and Adoption</h2>
-              <p class="lead">A useful business case compares setup cost with time saved, better output, or higher conversion.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>In simple terms, A useful business case compares setup cost with time saved, better output, or higher conversion. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: Cost, ROI, and Adoption usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain cost, roi, and adoption in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <section class="slide" data-slide="9">
-            <div class="slide-inner">
-              <div class="eyebrow">Lesson 12.8</div>
-              <h2>Common Reasons Agent Projects Fail</h2>
-              <p class="lead">Projects fail when goals are vague, data is messy, trust is low, or the workflow never matched a real problem.</p>
-              <div class="grid">
-                <div class="card">
-                  <span class="badge">Simple explanation</span>
-                  <p>A beginner way to understand this is: Projects fail when goals are vague, data is messy, trust is low, or the workflow never matched a real problem. If you can explain it to a friend without using buzzwords, you truly understand it.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Technical translation</span>
-                  <p>Technical translation: when builders talk about common reasons agent projects fail, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Why it matters</span>
-                  <p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p>
-                </div>
-                <div class="card">
-                  <span class="badge">Example + exercise</span>
-                  <p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p>
-                  <p class="small-note"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where common reasons agent projects fail shows up inside it.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-      <section class="slide" data-slide="10">
-        <div class="slide-inner">
-          <div class="eyebrow">Module complete</div>
-          <h2>Business and Real-World Use Cases wrapped</h2>
-          <p class="lead">You have finished this module deck. Continue to the next module, jump to the quiz slides, or go back to the full course.</p>
-          <div class="grid">
-            <div class="card">
-              <h3>Where to go next</h3>
-              <ul>
-                <li>Continue to the next module deck</li>
-                <li>Open the quiz slide deck for review</li>
-                <li>Return to the full course page if you want the handbook view</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Quick links</h3>
-              <div class="links">
-                <a class="btn" href="module-11.html">Previous module slides</a>
-                <a class="btn primary" href="module-13.html">Next module slides</a>
-                <a class="btn" href="../index.html">Full course</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  <div class="footer">
-    <div class="links">
-      <a class="btn" href="index.html">Slides library</a>
-      <a class="btn" href="../index.html">Full course</a>
-      <a class="btn" href="quiz.html">Quiz slides</a>
-    </div>
-    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-    <div class="indicator" id="indicator">1 / 10</div>
-    <div class="controls">
-      <button class="btn" id="prev">← Prev</button>
-      <button class="btn primary" id="next">Next →</button>
-    </div>
-  </div>
-  <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const progress = document.getElementById('progress');
-    const indicator = document.getElementById('indicator');
-    let current = 0;
-    function render() {
-      slides.forEach((slide, index) => slide.classList.toggle('active', index === current));
-      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
-      indicator.textContent = `${current + 1} / ${slides.length}`;
-    }
-    document.getElementById('prev').addEventListener('click', () => { current = (current - 1 + slides.length) % slides.length; render(); });
-    document.getElementById('next').addEventListener('click', () => { current = (current + 1) % slides.length; render(); });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { current = (current + 1) % slides.length; render(); }
-      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { current = (current - 1 + slides.length) % slides.length; render(); }
-    });
-    render();
-  </script>
-</body>
-</html>
+</style></head><body><main class="deck"><section class="slide active"><div class="inner"><div class="eyebrow">Module 12</div><h1>Business and Real-World Use Cases</h1><p class="lead">Connect the ideas to work, money, teams, and practical outcomes.</p><div class="grid"><div class="card"><h3>What this module covers</h3><ul><li>Understand the core idea behind business and real-world use cases.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul></div><div class="card"><h3>How this deck works</h3><p>Each lesson gets its own slide. So the slide version mirrors the course structure instead of acting like a tiny summary.</p><p class="small">Use arrow keys or the next and previous buttons.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.1</div><h2>Where Agents Create Value</h2><p class="lead">Agents create value when they remove bottlenecks, reduce busywork, or improve decisions.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, Agents create value when they remove bottlenecks, reduce busywork, or improve decisions. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Where Agents Create Value usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain where agents create value in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.2</div><h2>Research and Knowledge Work</h2><p class="lead">Research agents can gather sources, compare options, and package findings faster than manual workflows.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: Research agents can gather sources, compare options, and package findings faster than manual workflows. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about research and knowledge work, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where research and knowledge work shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.3</div><h2>Customer Support Workflows</h2><p class="lead">Support agents can draft replies, classify tickets, and surface the right knowledge base articles.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>At the simplest level, Support agents can draft replies, classify tickets, and surface the right knowledge base articles. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Customer Support Workflows usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain customer support workflows in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.4</div><h2>Sales and Outreach</h2><p class="lead">Sales agents can prepare lead notes, draft personalized outreach, and update CRMs with the right guardrails.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, Sales agents can prepare lead notes, draft personalized outreach, and update CRMs with the right guardrails. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about sales and outreach, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where sales and outreach shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.5</div><h2>Operations and Internal Teams</h2><p class="lead">Internal agents can help with reporting, scheduling, approvals, documentation, and process follow-up.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: Internal agents can help with reporting, scheduling, approvals, documentation, and process follow-up. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Operations and Internal Teams usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain operations and internal teams in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.6</div><h2>Creative and Content Use Cases</h2><p class="lead">Content agents can brainstorm, outline, adapt, summarize, and repurpose across channels.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>At the simplest level, Content agents can brainstorm, outline, adapt, summarize, and repurpose across channels. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about creative and content use cases, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where creative and content use cases shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.7</div><h2>Cost, ROI, and Adoption</h2><p class="lead">A useful business case compares setup cost with time saved, better output, or higher conversion.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>In simple terms, A useful business case compares setup cost with time saved, better output, or higher conversion. Think of it as matching the tool to the job so effort leads to real value. The goal is not to impress you with jargon but to make the idea usable.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: Cost, ROI, and Adoption usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: explain cost, roi, and adoption in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Lesson 12.8</div><h2>Common Reasons Agent Projects Fail</h2><p class="lead">Projects fail when goals are vague, data is messy, trust is low, or the workflow never matched a real problem.</p><div class="grid"><div class="card"><span class="badge">Simple explanation</span><p>A beginner way to understand this is: Projects fail when goals are vague, data is messy, trust is low, or the workflow never matched a real problem. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div><div class="card"><span class="badge">Technical translation</span><p>Technical translation: when builders talk about common reasons agent projects fail, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div><div class="card"><span class="badge">Why it matters</span><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div><div class="card"><span class="badge">Example + exercise</span><p><strong style="color:var(--text);">Example:</strong> A support team may cut response time by using an agent to gather context before a human answers.</p><p class="small"><strong style="color:var(--text);">Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where common reasons agent projects fail shows up inside it.</p></div></div></div></section><section class="slide"><div class="inner"><div class="eyebrow">Module complete</div><h2>Business and Real-World Use Cases wrapped</h2><p class="lead">Continue with the next module deck, move to the quiz slides, or jump back to the normal reading version.</p><div class="grid"><div class="card"><h3>Quick links</h3><div class="links"><a class="btn" href="module-11.html">← Module 11</a><a class="btn primary" href="module-13.html">Next module slides →</a><a class="btn" href="../course/module-12.html">Read module</a></div></div><div class="card"><h3>Why this format</h3><p>Slides keep the same curriculum, only the presentation changes.</p></div></div></div></section></main><div class="footer"><div class="links"><a class="btn" href="index.html">Slides library</a><a class="btn" href="../course/index.html">Course directory</a><a class="btn" href="quiz.html">Quiz slides</a></div><div class="progress-wrap"><div class="progress" id="progress"></div></div><div class="indicator" id="indicator">1 / 10</div><div class="controls"><button class="btn" id="prev">← Prev</button><button class="btn primary" id="next">Next →</button></div></div><script>const slides=Array.from(document.querySelectorAll('.slide'));const progress=document.getElementById('progress');const indicator=document.getElementById('indicator');let current=0;function render(){slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));progress.style.width=`${((current+1)/slides.length)*100}%`;indicator.textContent=`${current+1} / ${slides.length}`;}document.getElementById('prev').addEventListener('click',()=>{current=(current-1+slides.length)%slides.length;render();});document.getElementById('next').addEventListener('click',()=>{current=(current+1)%slides.length;render();});document.addEventListener('keydown',(event)=>{if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){current=(current+1)%slides.length;render();}if(event.key==='ArrowLeft'||event.key==='PageUp'){current=(current-1+slides.length)%slides.length;render();}});render();</script></body></html>

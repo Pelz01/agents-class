@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agents.class | Module 14</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0a0a0a;
+  --panel: #121212;
+  --panel-2: #171717;
+  --line: #262626;
+  --text: #f5f5f5;
+  --muted: #a3a3a3;
+  --accent: #ff5a1f;
+  --accent-soft: rgba(255, 90, 31, 0.12);
+  --success: #86efac;
+  --danger: #fca5a5;
+  --max: 1240px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
+a { color: inherit; text-decoration: none; }
+
+body { min-height: 100vh; line-height: 1.65; }
+.page { max-width: var(--max); margin: 0 auto; padding: 2rem 1rem 3rem; }
+.eyebrow { display: inline-block; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; }
+h1, h2 { font-family: 'Playfair Display', serif; line-height: 1.06; }
+h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+p { color: var(--muted); }
+.hero-actions, .card-actions, .module-actions { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.grid { display: grid; gap: 1rem; }
+.directory { grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 1.5rem; }
+.card, .panel, .lesson-card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.25rem; }
+.card h3, .lesson-card h3 { font-size: 1.15rem; margin-bottom: .45rem; }
+.lesson-count { color: var(--accent); font-size: .9rem; font-weight: 700; margin-bottom: .6rem; }
+.module-page { display: grid; gap: 1rem; }
+.lesson-card { display: grid; gap: 1rem; }
+.lesson-meta { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; font-weight: 800; }
+.lesson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.lesson-block { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 1rem; }
+.lesson-block h4 { margin-bottom: .4rem; font-size: .92rem; }
+.exercise { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 1rem; color: var(--muted); }
+.exercise strong { color: var(--text); }
+.outcomes { margin-left: 1.1rem; display: grid; gap: .7rem; color: var(--muted); }
+@media (max-width: 900px) { .directory, .lesson-grid { grid-template-columns: 1fr; } .btn { width: 100%; } }
+</style>
+</head>
+<body>
+  <main class="page module-page">
+    <section class="panel">
+      <div class="eyebrow">Module 14</div>
+      <h1>Careers, Strategy, and the Future</h1>
+      <p>End with the bigger picture: skills, opportunities, and how the field may evolve.</p>
+      <ul class="outcomes"><li>Understand the core idea behind careers, strategy, and the future.</li><li>Explain the technical idea in plain English without losing the important meaning.</li><li>Connect the concept to real-world tools, workflows, or products.</li><li>Use the topic as part of a larger agent, automation, or AI strategy.</li></ul>
+      <div class="module-actions">
+        <a class="btn" href="module-13.html">← Module 13</a>
+        <a class="btn" href="../slides/module-14.html">Slides for this module</a>
+        <a class="btn" href="../quiz.html">Quiz</a>
+        <a class="btn primary" href="../quiz.html">Go to quiz →</a>
+      </div>
+    </section>
+    <article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.1</div>
+          <h3>Jobs Being Reshaped by Agents</h3>
+          <p>Agents are changing how research, operations, support, software, and content work gets done.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>In simple terms, Agents are changing how research, operations, support, software, and content work gets done. Think of it as learning how roads are changing before choosing where to drive next. The goal is not to impress you with jargon but to make the idea usable.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: Jobs Being Reshaped by Agents usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: explain jobs being reshaped by agents in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.2</div>
+          <h3>Skills Worth Learning Now</h3>
+          <p>Clear thinking, workflow design, prompting, QA, domain knowledge, and tool literacy are all rising in value.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>A beginner way to understand this is: Clear thinking, workflow design, prompting, QA, domain knowledge, and tool literacy are all rising in value. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: when builders talk about skills worth learning now, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where skills worth learning now shows up inside it.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.3</div>
+          <h3>Working Alongside Agents</h3>
+          <p>The strongest professionals will learn to direct, review, and improve AI systems instead of fearing them.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>At the simplest level, The strongest professionals will learn to direct, review, and improve AI systems instead of fearing them. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: Working Alongside Agents usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: explain working alongside agents in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.4</div>
+          <h3>Agent Managers and AI Operators</h3>
+          <p>New roles are emerging for people who supervise outputs, tune workflows, and manage reliability.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>In simple terms, New roles are emerging for people who supervise outputs, tune workflows, and manage reliability. Think of it as learning how roads are changing before choosing where to drive next. The goal is not to impress you with jargon but to make the idea usable.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: when builders talk about agent managers and ai operators, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where agent managers and ai operators shows up inside it.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.5</div>
+          <h3>Open Source vs Closed Platforms</h3>
+          <p>Some teams want flexibility and control, while others want speed and managed infrastructure.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>A beginner way to understand this is: Some teams want flexibility and control, while others want speed and managed infrastructure. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: Open Source vs Closed Platforms usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: explain open source vs closed platforms in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.6</div>
+          <h3>The Future of Personal Agents</h3>
+          <p>Personal agents may gradually help with scheduling, research, finance, learning, and communication.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>At the simplest level, Personal agents may gradually help with scheduling, research, finance, learning, and communication. It helps to picture the system as a practical helper that follows a clear job instead of as a magic brain.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: when builders talk about the future of personal agents, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where the future of personal agents shows up inside it.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.7</div>
+          <h3>The Future of Team Agents</h3>
+          <p>Teams will likely use shared agents that understand goals, documents, and ongoing work across tools.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>In simple terms, Teams will likely use shared agents that understand goals, documents, and ongoing work across tools. Think of it as learning how roads are changing before choosing where to drive next. The goal is not to impress you with jargon but to make the idea usable.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: The Future of Team Agents usually involves structured inputs, model decisions, and some form of state, tooling, or data flow. Under the hood, engineers turn this idea into repeatable components so the behavior is measurable and easier to improve.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: this topic shapes whether an agent feels useful or confusing in real life. When this part is weak, the whole system feels less trustworthy.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: explain the future of team agents in two sentences as if you were teaching a total beginner, then give one example from daily life or work.</div>
+        </article><article class="lesson-card">
+          <div class="lesson-meta">Lesson 14.8</div>
+          <h3>How to Keep Learning</h3>
+          <p>The field moves fast, so the best long-term habit is steady experimentation with real projects.</p>
+          <div class="lesson-grid">
+            <div class="lesson-block"><h4>Simple explanation</h4><p>A beginner way to understand this is: The field moves fast, so the best long-term habit is steady experimentation with real projects. If you can explain it to a friend without using buzzwords, you truly understand it.</p></div>
+            <div class="lesson-block"><h4>Technical translation</h4><p>Technical translation: when builders talk about how to keep learning, they usually mean a concrete system design with prompts, model calls, validation, and often external tools or data sources. The simple idea stays the same even when the implementation becomes more advanced.</p></div>
+            <div class="lesson-block"><h4>Why it matters</h4><p>Why it matters: many AI products succeed or fail on this exact idea because it affects quality, cost, user trust, and real-world usefulness.</p></div>
+            <div class="lesson-block"><h4>Real-world example</h4><p>A marketer, operator, analyst, or founder can all benefit by learning how to direct AI systems well.</p></div>
+          </div>
+          <div class="exercise"><strong>Mini exercise:</strong> Mini exercise: pick a tool, app, or task you already know and describe where how to keep learning shows up inside it.</div>
+        </article>
+  </main>
+</body>
+</html>

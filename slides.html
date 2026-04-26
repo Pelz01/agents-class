@@ -1,199 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>agents.class | Slides Library</title>
-  <meta name="description" content="Full slide library for agents.class, including module decks and quiz slides.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <style>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>agents.class | Slides</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"><style>
 :root {
-  --bg: #090909;
-  --panel: #141414;
-  --panel-2: #1b1b1b;
-  --line: #2b2b2b;
+  --bg: #0a0a0a;
+  --panel: #121212;
+  --panel-2: #171717;
+  --line: #262626;
   --text: #f5f5f5;
   --muted: #a3a3a3;
   --accent: #ff5a1f;
-  --accent-soft: rgba(255,90,31,0.12);
+  --accent-soft: rgba(255, 90, 31, 0.12);
   --success: #86efac;
   --danger: #fca5a5;
+  --max: 1240px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
 a { color: inherit; text-decoration: none; }
 
 body { min-height: 100vh; line-height: 1.65; }
-.page { max-width: 1320px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-.hero { padding: 2rem 0 1.5rem; }
-.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; display: inline-block; }
+.page { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+.eyebrow { display: inline-block; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; margin-bottom: .9rem; }
 h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); line-height: 1.04; }
-.hero p { margin-top: 1rem; max-width: 900px; color: var(--muted); font-size: 1.05rem; }
-.hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.5rem; }
-.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: .9rem 1.1rem; font-weight: 700; }
+p { color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; margin-top: 1.5rem; }
+.card, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.2rem; }
+.card h3 { margin-bottom: .45rem; }
+.btns { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px; padding: .82rem 1rem; font-weight: 700; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
-.stats, .grid { display: grid; gap: 1rem; }
-.stats { grid-template-columns: repeat(4, minmax(0,1fr)); margin: 1.25rem 0 2rem; }
-.stat, .card, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 1.2rem; }
-.stat strong { display: block; color: var(--accent); font-size: 1.5rem; }
-.stat span, .panel p, .card p { color: var(--muted); }
-.section-title { font-size: 1.35rem; margin: 1.2rem 0 .9rem; }
-.grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-.card h3 { font-size: 1.05rem; margin-bottom: .45rem; }
-.card .mini { color: var(--muted); font-size: .9rem; margin-bottom: .75rem; }
-.card-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1rem; }
-.card-link { display: inline-flex; border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px; padding: .7rem .95rem; font-size: .9rem; font-weight: 700; }
-.card-link:hover, .btn:hover { border-color: var(--accent); }
-@media (max-width: 980px) { .grid, .stats { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .grid, .stats { grid-template-columns: 1fr; } .btn, .card-link { width: 100%; justify-content: center; } }
-</style>
-</head>
-<body>
-  <main class="page">
-    <section class="hero">
-      <div class="eyebrow">Slides library</div>
-      <h1>Clean slides for the full course</h1>
-      <p>The short summary deck is gone. This slide library now covers the whole course properly. Each module has its own slide page, and the quiz also has a slide version, so the content is easier to move through without cramming everything into one screen.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="slides/module-01.html">Start module 1 slides</a>
-        <a class="btn" href="slides/quiz.html">Open quiz slides</a>
-        <a class="btn" href="index.html">Back to course</a>
-        <a class="btn" href="quiz.html">Interactive quiz page</a>
-      </div>
-    </section>
-    <section class="stats">
-      <div class="stat"><strong>14</strong><span>Module decks</span></div>
-      <div class="stat"><strong>112</strong><span>Lesson slides</span></div>
-      <div class="stat"><strong>50</strong><span>Quiz questions</span></div>
-      <div class="stat"><strong>2</strong><span>Ways to review quiz</span></div>
-    </section>
-    <section class="panel">
-      <h2 class="section-title">Module slide pages</h2>
-      <p>Open any module as its own deck. This keeps the slides clean while still showing the full course content.</p>
-    </section>
-    <section class="grid"><article class="card">
-      <div class="eyebrow">Module 01</div>
-      <h3>AI Foundations</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Start from first principles: what AI is, what it is not, and how modern systems fit together.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-01.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 02</div>
-      <h3>Understanding LLMs</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Learn how language models work so the jump into agents feels natural instead of magical.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-02.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 03</div>
-      <h3>From Chatbots to Agents</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Understand the exact jump from “answers questions” to “gets work done.”</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-03.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 04</div>
-      <h3>Agent Building Blocks</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Break an agent into understandable parts so the architecture feels simple.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-04.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 05</div>
-      <h3>Memory, Knowledge, and RAG</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Teach the difference between what a model knows, what it sees now, and what it can look up.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-05.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 06</div>
-      <h3>Tools, APIs, and MCP</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Show how agents connect to the outside world in practical, modern ways.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-06.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 07</div>
-      <h3>Automation and Workflows</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Map agents into the real automation world where work flows from one step to another.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-07.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 08</div>
-      <h3>Multi-Agent Systems</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Explore what happens when one agent is not enough and a team of agents collaborates.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-08.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 09</div>
-      <h3>Reliability and Evaluation</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Teach how to make agents dependable instead of flashy but fragile.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-09.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 10</div>
-      <h3>Safety, Security, and Ethics</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Keep the course honest about risks, boundaries, and responsible design.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-10.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 11</div>
-      <h3>Product and User Experience</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Great agents are not just powerful; they are also understandable, useful, and pleasant to use.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-11.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 12</div>
-      <h3>Business and Real-World Use Cases</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Connect the ideas to work, money, teams, and practical outcomes.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-12.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 13</div>
-      <h3>Builder Path: How to Create Your Own Agent</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>Turn theory into practice with a simple path from idea to useful working system.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-13.html">Open module slides</a>
-      </div>
-    </article><article class="card">
-      <div class="eyebrow">Module 14</div>
-      <h3>Careers, Strategy, and the Future</h3>
-      <div class="mini">8 lesson slides</div>
-      <p>End with the bigger picture: skills, opportunities, and how the field may evolve.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/module-14.html">Open module slides</a>
-      </div>
-    </article></section>
-    <section class="panel" style="margin-top:1rem;">
-      <h2 class="section-title">Quiz slides</h2>
-      <p>Want the quiz in slide format too? Use the dedicated quiz slide deck for question-by-question review.</p>
-      <div class="card-actions">
-        <a class="card-link" href="slides/quiz.html">Open quiz slide deck</a>
-        <a class="card-link" href="quiz.html">Open interactive quiz page</a>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+.mini { color: var(--muted); font-size: .9rem; margin-bottom: .6rem; }
+@media (max-width: 980px) { .grid { grid-template-columns: 1fr; } .btn { width: 100%; } }
+</style></head><body><main class="page"><section><div class="eyebrow">Slides library</div><h1>Same course, slide format</h1><p>Slides mirror the course structure. Open any module deck or jump to the quiz slide deck.</p><div class="btns"><a class="btn" href="index.html">Home</a><a class="btn" href="course/index.html">Course directory</a><a class="btn primary" href="quiz.html">Quiz slides</a></div></section><section class="grid"><article class="card"><div class="eyebrow">Module 01</div><h3>AI Foundations</h3><div class="mini">8 lesson slides</div><p>Start from first principles: what AI is, what it is not, and how modern systems fit together.</p><div class="btns"><a class="btn primary" href="module-01.html">Open slide deck</a><a class="btn" href="../course/module-01.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 02</div><h3>Understanding LLMs</h3><div class="mini">8 lesson slides</div><p>Learn how language models work so the jump into agents feels natural instead of magical.</p><div class="btns"><a class="btn primary" href="module-02.html">Open slide deck</a><a class="btn" href="../course/module-02.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 03</div><h3>From Chatbots to Agents</h3><div class="mini">8 lesson slides</div><p>Understand the exact jump from “answers questions” to “gets work done.”</p><div class="btns"><a class="btn primary" href="module-03.html">Open slide deck</a><a class="btn" href="../course/module-03.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 04</div><h3>Agent Building Blocks</h3><div class="mini">8 lesson slides</div><p>Break an agent into understandable parts so the architecture feels simple.</p><div class="btns"><a class="btn primary" href="module-04.html">Open slide deck</a><a class="btn" href="../course/module-04.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 05</div><h3>Memory, Knowledge, and RAG</h3><div class="mini">8 lesson slides</div><p>Teach the difference between what a model knows, what it sees now, and what it can look up.</p><div class="btns"><a class="btn primary" href="module-05.html">Open slide deck</a><a class="btn" href="../course/module-05.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 06</div><h3>Tools, APIs, and MCP</h3><div class="mini">8 lesson slides</div><p>Show how agents connect to the outside world in practical, modern ways.</p><div class="btns"><a class="btn primary" href="module-06.html">Open slide deck</a><a class="btn" href="../course/module-06.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 07</div><h3>Automation and Workflows</h3><div class="mini">8 lesson slides</div><p>Map agents into the real automation world where work flows from one step to another.</p><div class="btns"><a class="btn primary" href="module-07.html">Open slide deck</a><a class="btn" href="../course/module-07.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 08</div><h3>Multi-Agent Systems</h3><div class="mini">8 lesson slides</div><p>Explore what happens when one agent is not enough and a team of agents collaborates.</p><div class="btns"><a class="btn primary" href="module-08.html">Open slide deck</a><a class="btn" href="../course/module-08.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 09</div><h3>Reliability and Evaluation</h3><div class="mini">8 lesson slides</div><p>Teach how to make agents dependable instead of flashy but fragile.</p><div class="btns"><a class="btn primary" href="module-09.html">Open slide deck</a><a class="btn" href="../course/module-09.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 10</div><h3>Safety, Security, and Ethics</h3><div class="mini">8 lesson slides</div><p>Keep the course honest about risks, boundaries, and responsible design.</p><div class="btns"><a class="btn primary" href="module-10.html">Open slide deck</a><a class="btn" href="../course/module-10.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 11</div><h3>Product and User Experience</h3><div class="mini">8 lesson slides</div><p>Great agents are not just powerful; they are also understandable, useful, and pleasant to use.</p><div class="btns"><a class="btn primary" href="module-11.html">Open slide deck</a><a class="btn" href="../course/module-11.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 12</div><h3>Business and Real-World Use Cases</h3><div class="mini">8 lesson slides</div><p>Connect the ideas to work, money, teams, and practical outcomes.</p><div class="btns"><a class="btn primary" href="module-12.html">Open slide deck</a><a class="btn" href="../course/module-12.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 13</div><h3>Builder Path: How to Create Your Own Agent</h3><div class="mini">8 lesson slides</div><p>Turn theory into practice with a simple path from idea to useful working system.</p><div class="btns"><a class="btn primary" href="module-13.html">Open slide deck</a><a class="btn" href="../course/module-13.html">Read module</a></div></article><article class="card"><div class="eyebrow">Module 14</div><h3>Careers, Strategy, and the Future</h3><div class="mini">8 lesson slides</div><p>End with the bigger picture: skills, opportunities, and how the field may evolve.</p><div class="btns"><a class="btn primary" href="module-14.html">Open slide deck</a><a class="btn" href="../course/module-14.html">Read module</a></div></article></section></main></body></html>
